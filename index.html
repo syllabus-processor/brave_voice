@@ -41,9 +41,11 @@
 
     <!-- Controls -->
     <section class="controls">
-      <button id="btnReplay" class="ghost">↺ Replay</button>
-      <button id="btnReset" class="ghost danger">🗑 Reset</button>
+      <button id="btnReplay" class="ghost">🏠 Main Menu</button>
       <button id="btnPractice" class="primary">🎤 Practice Brave Voice</button>
+      <button id="btnShield" class="secondary">🛡️ Design Shield</button>
+      <button id="btnParent" class="ghost">👨‍👩‍👧‍👦 Parent Zone</button>
+      <button id="btnReset" class="danger">🔄 Reset Progress</button>
     </section>
   </main>
 
@@ -86,6 +88,61 @@
         <button id="btnCloseModal" class="ghost">Close</button>
         <button id="btnPracticeSpeech" class="secondary">🎤 Practice Speaking</button>
         <button id="btnSaveLine" class="primary">Save Line</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shield Designer Modal -->
+  <div id="shieldModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>🛡️ Design Your Brave Voice Shield</h2>
+      <p class="helper">Create a shield that represents your brave voice and inner strength!</p>
+
+      <div class="shield-designer">
+        <div class="canvas-container">
+          <canvas id="shieldCanvas" width="300" height="300"></canvas>
+        </div>
+        
+        <div class="design-tools">
+          <div class="tool-group">
+            <label>🎨 Brush Color</label>
+            <input type="color" id="colorPicker" value="#3b82f6" />
+          </div>
+          
+          <div class="tool-group">
+            <label>📏 Brush Size</label>
+            <input type="range" id="brushSize" min="2" max="20" value="5" />
+            <span id="brushSizeDisplay">5px</span>
+          </div>
+          
+          <div class="tool-group">
+            <label>✨ Add Stickers</label>
+            <div class="sticker-tray">
+              <button class="sticker-btn" data-sticker="⭐">⭐</button>
+              <button class="sticker-btn" data-sticker="💪">💪</button>
+              <button class="sticker-btn" data-sticker="🌟">🌟</button>
+              <button class="sticker-btn" data-sticker="🏆">🏆</button>
+              <button class="sticker-btn" data-sticker="❤️">❤️</button>
+              <button class="sticker-btn" data-sticker="🎯">🎯</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="btnClearCanvas" class="ghost">🗑️ Clear</button>
+        <button id="btnCloseShield" class="ghost">Close</button>
+        <button id="btnSaveShield" class="primary">💾 Save Shield</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parent Zone Modal -->
+  <div id="parentModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>👨‍👩‍👧‍👦 Parent Zone</h2>
+      <div id="parentContent" class="parent-content">
+        <!-- PIN entry will be shown first, then parent dashboard -->
       </div>
     </div>
   </div>

@@ -23,6 +23,16 @@ const storyData = {
         text: "🏫 The Friendship Circle Story",
         type: "story",
         nextScene: "school1"
+      },
+      {
+        text: "⚽ The Soccer Team Story",
+        type: "story",
+        nextScene: "sports1"
+      },
+      {
+        text: "🎠 The Playground Story", 
+        type: "story",
+        nextScene: "playground1"
       }
     ]
   },
@@ -1025,6 +1035,439 @@ const storyData = {
         nextScene: "menu"
       }
     ]
+  },
+
+  // Fourth Story Arc: Soccer Team Story
+  sports1: {
+    id: "sports1",
+    title: "The Soccer Team",
+    text: "It's recess time, and Liam walks out to the playground. He sees a group of kids from his class already playing soccer on the field.\n\nLiam loves soccer and has been practicing with his dad at home. He walks over hopefully with his soccer ball.\n\nTyler, one of the bigger kids, calls out: \"Sorry Liam, we already have even teams. Maybe next time.\"\n\nBut Liam can see there are only 8 kids playing, and they could easily make room for one more. What should Liam do?",
+    image: "images/Kids_soccer_field_exclusion_scene_c78624f2.png",
+    choices: [
+      {
+        text: "Get angry and say they're being unfair",
+        type: "aggressive",
+        nextScene: "sports2A"
+      },
+      {
+        text: "Walk away sadly and sit alone",
+        type: "passive",
+        nextScene: "sports2B"
+      },
+      {
+        text: "Ask if they could make room for one more player",
+        type: "assertive",
+        nextScene: "sports2C"
+      },
+      {
+        text: "Ask why they don't want you to play",
+        type: "curious",
+        nextScene: "sports2D"
+      }
+    ]
+  },
+
+  // Sports story - Aggressive path
+  sports2A: {
+    id: "sports2A",
+    title: "Get Angry at Team",
+    text: "Liam's face gets red and he raises his voice.\n\nLiam: \"That's not fair! You guys are just being mean! There's plenty of room for me to play too!\"\n\nThe other kids stop playing and stare at him. Tyler looks annoyed.\n\nTyler: \"Whoa, Liam! Why are you yelling at us? We were just trying to keep the teams even.\"\n\nSome of the other kids look uncomfortable. Maya says quietly: \"Maybe we should just let him play...\"\n\nBut now the mood feels tense. What does Liam do next?",
+    image: "images/Kids_soccer_field_exclusion_scene_c78624f2.png",
+    choices: [
+      {
+        text: "Storm off to play alone",
+        type: "aggressive",
+        nextScene: "sports3A1"
+      },
+      {
+        text: "Apologize for yelling",
+        type: "repair",
+        nextScene: "sports3A2"
+      },
+      {
+        text: "Explain why soccer is important to you",
+        type: "clarify",
+        nextScene: "sports3A3"
+      }
+    ]
+  },
+
+  // Sports story - Passive path
+  sports2B: {
+    id: "sports2B",
+    title: "Walk Away Sadly",
+    text: "Liam looks down at his soccer ball and nods quietly.\n\nLiam: \"Oh... okay. Maybe next time.\"\n\nHe walks over to the bench and sits down alone, watching the other kids laugh and play together. His soccer ball sits unused beside him.\n\nLiam really wanted to play, and he knows he's good at soccer. But speaking up felt too scary.\n\nAs he watches, he notices they could really use another player - the teams are actually uneven now. What does Liam do?",
+    image: "images/Kids_soccer_field_exclusion_scene_c78624f2.png",
+    choices: [
+      {
+        text: "Sit alone for the rest of recess",
+        type: "passive",
+        nextScene: "sports3B1"
+      },
+      {
+        text: "Try to join a different activity",
+        type: "resilient",
+        nextScene: "sports3B2"
+      },
+      {
+        text: "Go back and ask again more confidently",
+        type: "delayed_assertive",
+        nextScene: "sports3B3"
+      }
+    ]
+  },
+
+  // Sports story - Assertive path
+  sports2C: {
+    id: "sports2C",
+    title: "Ask for Inclusion",
+    text: "Liam takes a breath and speaks clearly and kindly.\n\nLiam: \"I understand you want to keep teams even. Could we maybe make it 5 on each team instead of 4? I've been practicing soccer at home and I'd really love to play with you guys.\"\n\nTyler looks thoughtful for a moment, then at the other kids.\n\nTyler: \"Actually, that's a good idea. Having 5 on each team might be more fun anyway.\"\n\nMaya smiles: \"Yeah! Liam's really good at soccer too. Come on, you can be on our team!\"\n\nHow does Liam respond to being included?",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    choices: [
+      {
+        text: "Join enthusiastically and play your best",
+        type: "confident",
+        nextScene: "sports3C1"
+      },
+      {
+        text: "Join but feel nervous about playing well",
+        type: "cautious",
+        nextScene: "sports3C2"
+      },
+      {
+        text: "Thank them and suggest making teams more fair",
+        type: "inclusive",
+        nextScene: "sports3C3"
+      }
+    ]
+  },
+
+  // Sports story - Curious path
+  sports2D: {
+    id: "sports2D",
+    title: "Ask Why",
+    text: "Liam looks genuinely curious rather than upset.\n\nLiam: \"I'm just wondering - is there a specific reason you don't want me to play? Did I do something wrong?\"\n\nTyler seems surprised by the honest question.\n\nTyler: \"Oh no, you didn't do anything wrong! We just... well, honestly, we thought you might not want to play with us. You usually read during recess.\"\n\nMaya adds: \"Yeah, we didn't want to bother you if you preferred quiet activities.\"\n\nLiam realizes there was a misunderstanding. How should he respond?",
+    image: "images/Kids_soccer_field_exclusion_scene_c78624f2.png",
+    choices: [
+      {
+        text: "Explain that you love both reading and soccer",
+        type: "clarifying",
+        nextScene: "sports3D1"
+      },
+      {
+        text: "Ask them to include you in the future",
+        type: "requesting",
+        nextScene: "sports3D2"
+      },
+      {
+        text: "Suggest taking turns between quiet and active play",
+        type: "problem_solving",
+        nextScene: "sports3D3"
+      }
+    ]
+  },
+
+  // Sports story endings
+  sports3A1: {
+    id: "sports3A1",
+    title: "Storm Off Alone",
+    text: "Liam grabs his soccer ball and storms away from the group, heading to the far corner of the playground.\n\nHe kicks his ball against the fence by himself, feeling angry and left out. The other kids continue their game, but the fun energy is gone.\n\nLiam spends the rest of recess alone, wishing he had handled things differently. His anger made everyone feel bad, including himself.",
+    image: "images/Kids_soccer_field_exclusion_scene_c78624f2.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: -2,
+      badge: null,
+      reflection: "When we let anger control us, we often end up more isolated than before. Liam's yelling pushed his classmates away and made recess less fun for everyone."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "sports1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  sports3A2: {
+    id: "sports3A2",
+    title: "Apologize for Yelling",
+    text: "Liam takes a deep breath and his voice becomes calmer.\n\nLiam: \"I'm sorry I yelled at you guys. I was just really excited to play soccer, and I felt disappointed when I thought I couldn't join.\"\n\nTyler's expression softens: \"Hey, no worries, Liam. We get it. We all love soccer too.\"\n\nMaya nods: \"Want to join us? We can figure out how to make the teams work.\"\n\nLiam feels good that he could apologize and repair the situation.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Team Repair",
+      reflection: "Liam showed maturity by apologizing after making a mistake. This helped turn a conflict into an opportunity for inclusion and friendship."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "sports1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  sports3B1: {
+    id: "sports3B1",
+    title: "Sit Alone All Recess",
+    text: "Liam stays on the bench for the entire recess, watching the other kids have fun playing soccer.\n\nHe bounces his ball quietly, wishing he was brave enough to ask again. The game looks really fun, and he knows he could help make it even better.\n\nWhen the bell rings for everyone to go inside, Liam feels sad that he missed out on a chance to play and make friends.",
+    image: "images/Kids_soccer_field_exclusion_scene_c78624f2.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: -1,
+      badge: null,
+      reflection: "Sometimes staying quiet feels safer, but it can lead to missed opportunities for fun and friendship. Liam's brave voice could have helped him join the game."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "sports1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  sports3B2: {
+    id: "sports3B2",
+    title: "Find Different Activity",
+    text: "Liam looks around the playground and sees some other kids playing four square nearby.\n\nLiam: \"Hey, mind if I join your game?\"\n\nJenna: \"Sure! We need a fourth player anyway. Do you know how to play?\"\n\nLiam ends up having a great time playing four square and makes some new friends. Sometimes when one activity doesn't work out, there are other fun options.",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Activity Explorer",
+      reflection: "Liam showed resilience by not giving up on having fun at recess. Finding alternative activities can lead to new friendships and experiences."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "sports1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  sports3C1: {
+    id: "sports3C1",
+    title: "Play with Confidence",
+    text: "Liam joins Maya's team with a big smile and plays his best soccer.\n\nHe passes well, encourages his teammates, and even scores a goal! Tyler comes over after the game.\n\nTyler: \"Wow, Liam! You're really good at soccer. I'm glad you asked to join us. Want to play again tomorrow?\"\n\nLiam feels proud that he used his brave voice to ask for inclusion and then showed what a good teammate he could be.",
+    image: "images/Kids_soccer_field_exclusion_scene_c78624f2.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Team Player",
+      reflection: "Liam used his brave voice to advocate for inclusion, then showed his character through good sportsmanship. Speaking up confidently opened the door to new friendships."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "sports1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  // Fifth Story Arc: Playground Equipment Story
+  playground1: {
+    id: "playground1",
+    title: "The Playground Swing",
+    text: "Liam arrives at the neighborhood park and sees that his favorite swing - the one with the longest chains that goes really high - is being used by an older kid named Jake.\n\nLiam has been looking forward to using that swing all day. There are other swings available, but this one is special because it's the only one that goes high enough to feel like flying.\n\nJake has been on the swing for a long time, just sitting and talking to his friend Marcus instead of actually swinging.\n\nLiam really wants to ask for a turn, but Jake is bigger and older. What should Liam do?",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    choices: [
+      {
+        text: "Tell Jake he's hogging the swing and needs to share",
+        type: "aggressive",
+        nextScene: "playground2A"
+      },
+      {
+        text: "Wait quietly and hope Jake will leave soon",
+        type: "passive",
+        nextScene: "playground2B"
+      },
+      {
+        text: "Politely ask if you can have a turn",
+        type: "assertive",
+        nextScene: "playground2C"
+      },
+      {
+        text: "Ask how long he plans to use it",
+        type: "curious",
+        nextScene: "playground2D"
+      }
+    ]
+  },
+
+  playground2A: {
+    id: "playground2A",
+    title: "Demand the Swing",
+    text: "Liam marches up to Jake with his hands on his hips.\n\nLiam: \"Hey! You're hogging that swing! You're not even using it right - you're just sitting there talking. Other kids want a turn too!\"\n\nJake looks surprised and annoyed. Marcus frowns at Liam.\n\nJake: \"Excuse me? Who are you to tell me what to do? I got here first, kid.\"\n\nMarcus adds: \"Yeah, we're having a conversation. Mind your own business.\"\n\nNow the older boys seem upset with Liam. What does he do next?",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    choices: [
+      {
+        text: "Keep arguing and say it's not fair",
+        type: "aggressive",
+        nextScene: "playground3A1"
+      },
+      {
+        text: "Apologize for being rude",
+        type: "repair",
+        nextScene: "playground3A2"
+      },
+      {
+        text: "Explain why the swing is important to you",
+        type: "clarify",
+        nextScene: "playground3A3"
+      }
+    ]
+  },
+
+  playground2B: {
+    id: "playground2B",
+    title: "Wait Quietly",
+    text: "Liam decides to wait patiently. He sits on a nearby bench, watching Jake and Marcus continue their conversation.\n\nAfter 10 minutes, they're still just talking and barely swinging. Other kids come and go, using the other swings.\n\nLiam starts to feel like he might never get a turn. The sun is getting lower, and his mom will want to leave soon.\n\nWhat should Liam do?",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    choices: [
+      {
+        text: "Keep waiting until they leave",
+        type: "passive",
+        nextScene: "playground3B1"
+      },
+      {
+        text: "Use a different swing instead",
+        type: "adaptive",
+        nextScene: "playground3B2"
+      },
+      {
+        text: "Finally ask for a turn",
+        type: "delayed_assertive",
+        nextScene: "playground3B3"
+      }
+    ]
+  },
+
+  playground2C: {
+    id: "playground2C",
+    title: "Ask Politely",
+    text: "Liam walks over and waits for a pause in their conversation.\n\nLiam: \"Excuse me, Jake? I was wondering if I could have a turn on the swing when you're done? I really love that one because it goes so high.\"\n\nJake looks surprised but not annoyed.\n\nJake: \"Oh! I didn't realize anyone was waiting. Marcus and I were just talking. How long have you been waiting?\"\n\nLiam: \"Just a few minutes. I don't mind waiting a little longer if you're still using it.\"\n\nHow does Jake respond to Liam's polite request?",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    choices: [
+      {
+        text: "Jake offers to share time on the swing",
+        type: "successful",
+        nextScene: "playground3C1"
+      },
+      {
+        text: "Jake says just a few more minutes",
+        type: "compromise",
+        nextScene: "playground3C2"
+      },
+      {
+        text: "Jake suggests they all take turns",
+        type: "inclusive",
+        nextScene: "playground3C3"
+      }
+    ]
+  },
+
+  playground3A1: {
+    id: "playground3A1",
+    title: "Keep Arguing",
+    text: "Liam doesn't back down and keeps arguing.\n\nLiam: \"It's not fair! The playground is for everyone, not just you two! You're not even swinging!\"\n\nJake stands up from the swing, looking angry now.\n\nJake: \"Look, kid, you need to chill out. We were here first, and we can use the swing however we want.\"\n\nSome other kids start to stare at the argument. Liam realizes his aggressive approach made things worse, not better.",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: -2,
+      badge: null,
+      reflection: "Liam's aggressive approach escalated the conflict and made the older kids defensive. Sometimes demanding what we want pushes others away instead of helping us get it."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  playground3B1: {
+    id: "playground3B1",
+    title: "Wait Until Too Late",
+    text: "Liam continues waiting patiently on the bench, but Jake and Marcus keep talking and barely swing.\n\nAfter 20 more minutes, Liam's mom calls from across the park: \"Liam! Time to go home!\"\n\nJake and Marcus are still on the swings, chatting away. Liam never got his turn on his favorite swing.\n\nAs he walks to the car, Liam feels disappointed that he was too shy to speak up for himself.",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: -1,
+      badge: null,
+      reflection: "Sometimes being too patient means missing out on things that are important to us. Liam's polite request might have led to a turn on his favorite swing."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  playground3C1: {
+    id: "playground3C1",
+    title: "Jake Shares the Swing",
+    text: "Jake smiles and gets up from the swing.\n\nJake: \"You know what? You asked really nicely. Here, you can have a turn. Marcus and I can finish talking over by the monkey bars.\"\n\nLiam's face lights up: \"Really? Thank you so much!\"\n\nJake: \"No problem. It's cool that you love this swing too. Enjoy!\"\n\nLiam has an amazing time on his favorite swing, and he feels proud that he asked politely and got such a kind response.",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Polite Requestor",
+      reflection: "Liam's polite and respectful approach worked perfectly! When we ask nicely and show appreciation, people are much more likely to help us get what we need."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
   }
 };
 
@@ -1113,6 +1556,26 @@ const badges = {
   "Confident Artist": {
     name: "Confident Artist",
     description: "Displayed work with pride and confidence"
+  },
+  "Team Repair": {
+    name: "Team Repair",
+    description: "Fixed conflicts through sincere apologies"
+  },
+  "Activity Explorer": {
+    name: "Activity Explorer",
+    description: "Found new activities when first choice didn't work"
+  },
+  "Team Player": {
+    name: "Team Player",
+    description: "Showed great sportsmanship and teamwork"
+  },
+  "Polite Requestor": {
+    name: "Polite Requestor",
+    description: "Asked for what you needed in a respectful way"
+  },
+  "Shield Creator": {
+    name: "Shield Creator",
+    description: "Designed a shield representing your brave voice"
   }
 };
 

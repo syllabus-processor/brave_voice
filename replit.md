@@ -7,17 +7,19 @@ A therapeutic web application designed to help children (ages 8-12) learn assert
 This tool was developed for clinical use to support counseling sessions focused on building assertiveness skills in children dealing with bullying or conflict situations, particularly with siblings.
 
 ## Current Implementation
-**Status**: Fully functional prototype ready for clinical testing
+**Status**: Enhanced therapeutic platform with comprehensive features ready for clinical deployment
 **Last Updated**: September 5, 2025
 
 ## Project Architecture
 
 ### Core Features Implemented
-- **Interactive Story Engine**: JSON-driven branching narrative with 6 unique endings
+- **Expanded Story Engine**: 5 complete story arcs with 20+ unique endings covering sibling conflicts, sports scenarios, and playground situations
 - **Confidence Meter**: Visual progress tracking that responds to user choices
-- **Badge System**: Achievement rewards for different types of responses
-- **Brave Voice Builder**: Interactive tool for practicing "I feel... when you... Please..." statements
-- **Progress Persistence**: Local storage saves user progress between sessions
+- **Enhanced Badge System**: 10+ achievement badges for various therapeutic milestones
+- **Brave Voice Builder**: Interactive tool with speech synthesis for practicing assertiveness statements
+- **Shield Designer**: HTML5 Canvas creative tool for designing personalized "Brave Voice Shields"
+- **Parent Zone**: PIN-protected dashboard with progress monitoring and export capabilities
+- **Progress Persistence**: Comprehensive local storage for all user activities and creations
 
 ### Technical Stack
 - **Frontend**: Pure HTML5, CSS3, JavaScript (ES6)
@@ -35,25 +37,33 @@ This tool was developed for clinical use to support counseling sessions focused 
 ```
 
 ## Story Content
-The implemented story features Liam (10) dealing with his sister Ruby (13) teasing his artwork. The narrative includes:
+Five complete therapeutic story arcs featuring Liam (10) in various conflict scenarios:
 
-### Branching Paths
-1. **Aggressive Response**: Yelling back with consequences
-2. **Passive Response**: Staying silent with emotional impact  
-3. **Assertive Response**: Using "Brave Voice" with positive outcomes
+### Available Stories
+1. **Sibling Art Conflict**: Ruby (13) teasing Liam's artwork - original story with 6 endings
+2. **Soccer Team Exclusion**: Being left out during sports activities with peer dynamics
+3. **Playground Equipment Sharing**: Negotiating with older children for fair play opportunities
+
+### Enhanced Features
+- **Voice Practice**: Web Speech API integration for hearing brave voice statements aloud
+- **Creative Expression**: Shield Designer with drawing tools, color picker, and sticker overlays
+- **Clinical Monitoring**: Parent Zone with PIN protection and progress export functionality
 
 ### Learning Outcomes
-- 6 different endings showing consequences of different response types
-- 4+ earnable badges for various achievements
-- Reflection prompts that reinforce learning
-- Practice tools for real-world application
+- 20+ different endings demonstrating various conflict resolution approaches
+- 10+ specialized badges for therapeutic milestones
+- Voice practice reinforcement for real-world application
+- Creative tools for building confidence and self-expression
+- Comprehensive progress tracking for clinical assessment
 
 ## Recent Changes
-- **Story Implementation**: Complete "Liam and the Brave Voice Shield" narrative
-- **UI Polish**: Professional therapeutic interface design
-- **Interactivity**: Full choice system with visual feedback
-- **Progress Tracking**: Confidence meter and badge achievements
-- **Practice Tools**: Brave Voice Builder modal with sentence construction
+- **Story Expansion**: Added 4 new complete story arcs with diverse conflict scenarios
+- **Voice Integration**: Web Speech API implementation for auditory practice reinforcement
+- **Shield Designer**: HTML5 Canvas creative tool with drawing, colors, and stickers
+- **Parent Zone**: PIN-protected dashboard with progress summaries and export functionality
+- **Enhanced Badge System**: Expanded to 10+ specialized therapeutic achievement badges
+- **UI Enhancement**: Professional interface supporting multiple new features
+- **Clinical Tools**: Progress export and comprehensive monitoring capabilities
 
 ## User Preferences
 - **Target Audience**: Children ages 8-12 in therapeutic settings

@@ -29,6 +29,14 @@ class BraveVoiceGame {
     this.sceneImage.className = 'scene-image';
     this.sceneImage.alt = 'Story illustration';
 
+    // Initialize shield designer
+    this.canvas = null;
+    this.ctx = null;
+    this.isDrawing = false;
+
+    // Initialize parent zone
+    this.parentPIN = localStorage.getItem('parentPIN') || '0000';
+
     this.initializeGame();
     this.setupEventListeners();
     this.loadGameState();
@@ -56,6 +64,14 @@ class BraveVoiceGame {
 
     document.getElementById('btnPractice').addEventListener('click', () => {
       this.openBraveVoiceBuilder();
+    });
+
+    document.getElementById('btnShield').addEventListener('click', () => {
+      this.openShieldDesigner();
+    });
+
+    document.getElementById('btnParent').addEventListener('click', () => {
+      this.openParentZone();
     });
 
     // Brave Voice Builder modal
@@ -401,6 +417,345 @@ class BraveVoiceGame {
     setTimeout(() => {
       encouragement.remove();
     }, 3000);
+  }
+
+  // Shield Designer functionality
+  openShieldDesigner() {
+    const shieldModal = document.getElementById('shieldModal');
+    shieldModal.classList.remove('hidden');
+    
+    if (!this.canvas) {
+      this.initializeCanvas();
+    }
+  }
+
+  initializeCanvas() {
+    this.canvas = document.getElementById('shieldCanvas');
+    this.ctx = this.canvas.getContext('2d');
+    
+    // Set up canvas with shield background
+    this.drawShieldBackground();
+    
+    // Event listeners for drawing
+    this.canvas.addEventListener('mousedown', (e) => this.startDrawing(e));
+    this.canvas.addEventListener('mousemove', (e) => this.draw(e));
+    this.canvas.addEventListener('mouseup', () => this.stopDrawing());
+    this.canvas.addEventListener('mouseout', () => this.stopDrawing());
+    
+    // Touch events for mobile
+    this.canvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      this.canvas.dispatchEvent(mouseEvent);
+    });
+    
+    this.canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const mouseEvent = new MouseEvent('mousemove', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      this.canvas.dispatchEvent(mouseEvent);
+    });
+    
+    this.canvas.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      const mouseEvent = new MouseEvent('mouseup', {});
+      this.canvas.dispatchEvent(mouseEvent);
+    });
+    
+    // Tool controls
+    document.getElementById('brushSize').addEventListener('input', (e) => {
+      document.getElementById('brushSizeDisplay').textContent = e.target.value + 'px';
+    });
+    
+    // Sticker buttons
+    document.querySelectorAll('.sticker-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        this.addSticker(e.target.dataset.sticker);
+      });
+    });
+    
+    // Control buttons
+    document.getElementById('btnClearCanvas').addEventListener('click', () => {
+      this.clearCanvas();
+    });
+    
+    document.getElementById('btnCloseShield').addEventListener('click', () => {
+      this.closeShieldDesigner();
+    });
+    
+    document.getElementById('btnSaveShield').addEventListener('click', () => {
+      this.saveShield();
+    });
+  }
+
+  drawShieldBackground() {
+    const centerX = this.canvas.width / 2;
+    const centerY = this.canvas.height / 2;
+    const shieldHeight = 200;
+    const shieldWidth = 160;
+    
+    this.ctx.fillStyle = '#f8fafc';
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    // Draw shield outline
+    this.ctx.beginPath();
+    this.ctx.moveTo(centerX, centerY - shieldHeight/2);
+    this.ctx.lineTo(centerX + shieldWidth/2, centerY - shieldHeight/3);
+    this.ctx.lineTo(centerX + shieldWidth/2, centerY + shieldHeight/3);
+    this.ctx.lineTo(centerX, centerY + shieldHeight/2);
+    this.ctx.lineTo(centerX - shieldWidth/2, centerY + shieldHeight/3);
+    this.ctx.lineTo(centerX - shieldWidth/2, centerY - shieldHeight/3);
+    this.ctx.closePath();
+    
+    this.ctx.fillStyle = '#ffffff';
+    this.ctx.fill();
+    this.ctx.strokeStyle = '#3b82f6';
+    this.ctx.lineWidth = 3;
+    this.ctx.stroke();
+  }
+
+  startDrawing(e) {
+    this.isDrawing = true;
+    this.draw(e);
+  }
+
+  draw(e) {
+    if (!this.isDrawing) return;
+    
+    const rect = this.canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const color = document.getElementById('colorPicker').value;
+    const size = document.getElementById('brushSize').value;
+    
+    this.ctx.globalCompositeOperation = 'source-over';
+    this.ctx.lineWidth = size;
+    this.ctx.lineCap = 'round';
+    this.ctx.strokeStyle = color;
+    
+    this.ctx.lineTo(x, y);
+    this.ctx.stroke();
+    this.ctx.beginPath();
+    this.ctx.moveTo(x, y);
+  }
+
+  stopDrawing() {
+    if (this.isDrawing) {
+      this.isDrawing = false;
+      this.ctx.beginPath();
+    }
+  }
+
+  addSticker(sticker) {
+    const centerX = this.canvas.width / 2;
+    const centerY = this.canvas.height / 2;
+    
+    this.ctx.font = '24px serif';
+    this.ctx.fillStyle = 'black';
+    this.ctx.textAlign = 'center';
+    this.ctx.fillText(sticker, centerX + Math.random() * 100 - 50, centerY + Math.random() * 100 - 50);
+  }
+
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.drawShieldBackground();
+  }
+
+  saveShield() {
+    try {
+      const dataURL = this.canvas.toDataURL('image/png');
+      
+      // Save to local storage
+      const shields = JSON.parse(localStorage.getItem('savedShields') || '[]');
+      shields.push({
+        id: Date.now(),
+        dataURL: dataURL,
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('savedShields', JSON.stringify(shields));
+      
+      // Show success message
+      alert('🛡️ Your Brave Voice Shield has been saved! Great work creating something that represents your inner strength!');
+      
+      // Award badge for first shield
+      if (!this.gameState.earnedBadges.includes('Shield Creator')) {
+        this.gameState.earnedBadges.push('Shield Creator');
+        this.showBadgeEarned('Shield Creator');
+        this.renderBadges();
+        this.saveGameState();
+      }
+      
+    } catch (error) {
+      console.error('Error saving shield:', error);
+      alert('Sorry, there was an error saving your shield. Please try again.');
+    }
+  }
+
+  closeShieldDesigner() {
+    document.getElementById('shieldModal').classList.add('hidden');
+  }
+
+  // Parent Zone functionality
+  openParentZone() {
+    const parentModal = document.getElementById('parentModal');
+    const parentContent = document.getElementById('parentContent');
+    
+    parentContent.innerHTML = this.renderPINEntry();
+    parentModal.classList.remove('hidden');
+  }
+
+  renderPINEntry() {
+    return `
+      <div class="pin-entry">
+        <h3>Enter Parent PIN</h3>
+        <p>Please enter the 4-digit PIN to access the Parent Zone</p>
+        <div class="pin-input">
+          <input type="number" maxlength="1" min="0" max="9" id="pin1">
+          <input type="number" maxlength="1" min="0" max="9" id="pin2">
+          <input type="number" maxlength="1" min="0" max="9" id="pin3">
+          <input type="number" maxlength="1" min="0" max="9" id="pin4">
+        </div>
+        <div class="modal-actions">
+          <button onclick="game.closeParentZone()" class="ghost">Cancel</button>
+          <button onclick="game.verifyPIN()" class="primary">Enter</button>
+        </div>
+        <p style="font-size: 12px; color: var(--muted); margin-top: 20px;">
+          Default PIN: 0000 (Change this in settings)
+        </p>
+      </div>
+    `;
+  }
+
+  verifyPIN() {
+    const pin1 = document.getElementById('pin1').value;
+    const pin2 = document.getElementById('pin2').value;
+    const pin3 = document.getElementById('pin3').value;
+    const pin4 = document.getElementById('pin4').value;
+    
+    const enteredPIN = pin1 + pin2 + pin3 + pin4;
+    
+    if (enteredPIN === this.parentPIN) {
+      this.showParentDashboard();
+    } else {
+      alert('Incorrect PIN. Please try again.');
+      // Clear PIN inputs
+      document.querySelectorAll('.pin-input input').forEach(input => input.value = '');
+      document.getElementById('pin1').focus();
+    }
+  }
+
+  showParentDashboard() {
+    const parentContent = document.getElementById('parentContent');
+    parentContent.innerHTML = this.renderParentDashboard();
+  }
+
+  renderParentDashboard() {
+    const braveVoiceLines = JSON.parse(localStorage.getItem('braveVoiceLines') || '[]');
+    const savedShields = JSON.parse(localStorage.getItem('savedShields') || '[]');
+    
+    return `
+      <div class="parent-dashboard">
+        <h3>👨‍👩‍👧‍👦 Parent Dashboard</h3>
+        
+        <div class="progress-summary">
+          <h3>📊 Progress Summary</h3>
+          <p><strong>Confidence Level:</strong> ${this.gameState.confidence}/10</p>
+          <p><strong>Stories Completed:</strong> ${this.getCompletedStoriesCount()}</p>
+          <p><strong>Badges Earned:</strong> ${this.gameState.earnedBadges.length}</p>
+          <p><strong>Brave Voice Practice Lines:</strong> ${braveVoiceLines.length}</p>
+          <p><strong>Shields Created:</strong> ${savedShields.length}</p>
+        </div>
+        
+        <div class="progress-summary">
+          <h3>🎤 Recent Practice Lines</h3>
+          ${braveVoiceLines.slice(-5).map(line => 
+            `<p style="font-style: italic; margin: 8px 0;">"${line.line}"</p>`
+          ).join('') || '<p>No practice lines yet.</p>'}
+        </div>
+        
+        <div class="progress-summary">
+          <h3>⚙️ Settings</h3>
+          <div class="settings-toggle">
+            <span>🔊 Audio Enabled</span>
+            <div class="toggle-switch active" onclick="game.toggleSetting('audio')"></div>
+          </div>
+          <div class="settings-toggle">
+            <span>📤 Sharing Enabled</span>
+            <div class="toggle-switch" onclick="game.toggleSetting('sharing')"></div>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button onclick="game.exportProgress()" class="secondary">📤 Export Progress</button>
+          <button onclick="game.closeParentZone()" class="ghost">Close</button>
+          <button onclick="game.resetAllProgress()" class="danger">🗑️ Reset All Progress</button>
+        </div>
+      </div>
+    `;
+  }
+
+  getCompletedStoriesCount() {
+    // Count unique story prefixes that have been visited
+    const visitedScenes = this.gameState.visitedScenes || [];
+    const completedStories = new Set();
+    
+    visitedScenes.forEach(sceneId => {
+      if (sceneId.includes('3') && (sceneId.includes('A') || sceneId.includes('B') || sceneId.includes('C'))) {
+        const storyPrefix = sceneId.replace(/[0-9][ABC][0-9]*/, '');
+        completedStories.add(storyPrefix);
+      }
+    });
+    
+    return completedStories.size;
+  }
+
+  toggleSetting(setting) {
+    // This would toggle settings in a real app
+    alert(`${setting} setting toggled! (Feature demonstration)`);
+  }
+
+  exportProgress() {
+    const exportData = {
+      confidence: this.gameState.confidence,
+      badges: this.gameState.earnedBadges,
+      braveVoiceLines: JSON.parse(localStorage.getItem('braveVoiceLines') || '[]'),
+      visitedScenes: this.gameState.visitedScenes || [],
+      exportDate: new Date().toISOString()
+    };
+    
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(dataBlob);
+    link.download = 'brave-voice-progress.json';
+    link.click();
+    
+    alert('📄 Progress report exported! This can be shared with therapists or counselors.');
+  }
+
+  resetAllProgress() {
+    if (confirm('⚠️ This will delete ALL progress, including stories, badges, practice lines, and shields. Are you sure?')) {
+      if (confirm('This action cannot be undone. Continue?')) {
+        this.resetGame();
+        localStorage.removeItem('braveVoiceLines');
+        localStorage.removeItem('savedShields');
+        alert('🔄 All progress has been reset.');
+        this.closeParentZone();
+      }
+    }
+  }
+
+  closeParentZone() {
+    document.getElementById('parentModal').classList.add('hidden');
   }
 
   saveBraveVoiceLine() {
