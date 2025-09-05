@@ -624,8 +624,8 @@ class BraveVoiceGame {
           <input type="number" maxlength="1" min="0" max="9" id="pin4">
         </div>
         <div class="modal-actions">
-          <button onclick="game.closeParentZone()" class="ghost">Cancel</button>
-          <button onclick="game.verifyPIN()" class="primary">Enter</button>
+          <button onclick="window.parentZoneFunctions.closeParentZone()" class="ghost">Cancel</button>
+          <button onclick="window.parentZoneFunctions.verifyPIN()" class="primary">Enter</button>
         </div>
         <p style="font-size: 12px; color: var(--muted); margin-top: 20px;">
           Default PIN: 0000 (Change this in settings)
@@ -685,18 +685,18 @@ class BraveVoiceGame {
           <h3>⚙️ Settings</h3>
           <div class="settings-toggle">
             <span>🔊 Audio Enabled</span>
-            <div class="toggle-switch active" onclick="game.toggleSetting('audio')"></div>
+            <div class="toggle-switch active" onclick="window.parentZoneFunctions.toggleSetting('audio')"></div>
           </div>
           <div class="settings-toggle">
             <span>📤 Sharing Enabled</span>
-            <div class="toggle-switch" onclick="game.toggleSetting('sharing')"></div>
+            <div class="toggle-switch" onclick="window.parentZoneFunctions.toggleSetting('sharing')"></div>
           </div>
         </div>
         
         <div class="modal-actions">
-          <button onclick="game.exportProgress()" class="secondary">📤 Export Progress</button>
-          <button onclick="game.closeParentZone()" class="ghost">Close</button>
-          <button onclick="game.resetAllProgress()" class="danger">🗑️ Reset All Progress</button>
+          <button onclick="window.parentZoneFunctions.exportProgress()" class="secondary">📤 Export Progress</button>
+          <button onclick="window.parentZoneFunctions.closeParentZone()" class="ghost">Close</button>
+          <button onclick="window.parentZoneFunctions.resetAllProgress()" class="danger">🗑️ Reset All Progress</button>
         </div>
       </div>
     `;
@@ -835,6 +835,72 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+// Global functions for parent zone (avoiding scope issues)
+window.parentZoneFunctions = {
+  closeParentZone: () => {
+    document.getElementById('parentModal').classList.add('hidden');
+  },
+  
+  verifyPIN: () => {
+    const pin1 = document.getElementById('pin1').value;
+    const pin2 = document.getElementById('pin2').value;
+    const pin3 = document.getElementById('pin3').value;
+    const pin4 = document.getElementById('pin4').value;
+    
+    const enteredPIN = pin1 + pin2 + pin3 + pin4;
+    const storedPIN = localStorage.getItem('parentPIN') || '0000';
+    
+    if (enteredPIN === storedPIN) {
+      window.game.showParentDashboard();
+    } else {
+      alert('Incorrect PIN. Please try again.');
+      document.querySelectorAll('.pin-input input').forEach(input => input.value = '');
+      document.getElementById('pin1').focus();
+    }
+  },
+  
+  exportProgress: () => {
+    const gameState = JSON.parse(localStorage.getItem('braveVoiceGameState') || '{}');
+    const exportData = {
+      confidence: gameState.confidence || 5,
+      badges: gameState.earnedBadges || [],
+      braveVoiceLines: JSON.parse(localStorage.getItem('braveVoiceLines') || '[]'),
+      visitedScenes: gameState.visitedScenes || [],
+      exportDate: new Date().toISOString()
+    };
+    
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(dataBlob);
+    link.download = 'brave-voice-progress.json';
+    link.click();
+    
+    alert('📄 Progress report exported! This can be shared with therapists or counselors.');
+  },
+  
+  resetAllProgress: () => {
+    if (confirm('⚠️ This will delete ALL progress, including stories, badges, practice lines, and shields. Are you sure?')) {
+      if (confirm('This action cannot be undone. Continue?')) {
+        localStorage.removeItem('braveVoiceGameState');
+        localStorage.removeItem('braveVoiceLines');
+        localStorage.removeItem('savedShields');
+        alert('🔄 All progress has been reset.');
+        window.parentZoneFunctions.closeParentZone();
+        if (window.game) {
+          window.game.loadGameState();
+          window.game.renderScene('menu');
+        }
+      }
+    }
+  },
+  
+  toggleSetting: (setting) => {
+    alert(`${setting} setting toggled! (Feature demonstration)`);
+  }
+};
 
 // Initialize the game when page loads
 document.addEventListener('DOMContentLoaded', () => {
