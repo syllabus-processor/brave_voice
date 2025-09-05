@@ -1520,6 +1520,106 @@ const storyData = {
     ]
   },
 
+  playground3A2: {
+    id: "playground3A2",
+    title: "Apologize for Being Rude",
+    text: "Liam takes a deep breath and his voice becomes calmer.\n\nLiam: \"I'm sorry I was rude to you, Jake. I was just really excited to use that swing, and I got frustrated when I couldn't. That's not your fault.\"\n\nJake looks surprised but pleased: \"Hey, that's okay, Liam. We all get frustrated sometimes. I appreciate you apologizing.\"\n\nMarcus nods: \"Yeah, and we understand wanting to use the high swing. Want to take turns? We can share it.\"\n\nLiam feels proud that he could admit his mistake and repair the situation.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Team Repair",
+      reflection: "Liam showed maturity by apologizing when he realized he was being rude. This helped turn a conflict into an opportunity for sharing and friendship."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  playground3A3: {
+    id: "playground3A3",
+    title: "Explain Why It's Important",
+    text: "Liam speaks more calmly and explains his feelings.\n\nLiam: \"This swing is really special to me because it's the only one that goes high enough to feel like flying. I've been looking forward to using it all day.\"\n\nJake's expression softens: \"Oh, I didn't realize how much it meant to you. That's actually really cool that you love that feeling too.\"\n\nMarcus stands up: \"You know what? We were just talking anyway. Here, you can have a turn. We can chat by the monkey bars.\"\n\nLiam feels happy that sharing his feelings helped others understand him better.",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Brave Speaker",
+      reflection: "Liam used his brave voice to share his feelings and explain what was important to him. When we express ourselves clearly, others can understand and help us."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "playground1"
+      }
+    ]
+  },
+
+  playground3B2: {
+    id: "playground3B2",
+    title: "Try a Different Swing",
+    text: "Liam decides to be flexible and walks over to one of the other swings.\n\nAt first, he feels a little disappointed because it's not quite as high as his favorite. But as he starts swinging, he discovers this one actually has a really smooth motion that feels nice too.\n\nA younger girl named Emma comes over: \"Hi! I like your swing technique. Want to see who can swing the highest?\"\n\nLiam realizes that being adaptable led him to a new friend and a fun activity he wouldn't have had otherwise.",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Activity Explorer",
+      reflection: "Sometimes when our first choice isn't available, being flexible and trying something new can lead to unexpected fun and friendships."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  playground3B3: {
+    id: "playground3B3",
+    title: "Finally Ask for a Turn",
+    text: "After waiting so long, Liam finally gets up the courage to speak up.\n\nLiam: \"Excuse me, Jake? I've been waiting here for a while. Could I please have a turn on the swing when you're done?\"\n\nJake looks up, surprised: \"Oh! I had no idea you were waiting. Marcus and I were just talking. Sure, you can have a turn right now.\"\n\nMarcus adds: \"Yeah, we've been here forever just chatting. Thanks for being so patient!\"\n\nLiam feels relieved that speaking up worked, even though he waited a long time to do it.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Calm Communicator",
+      reflection: "Even though Liam waited a long time, he eventually found his brave voice to ask for what he needed. Sometimes speaking up takes practice and patience."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
   playground3C1: {
     id: "playground3C1",
     title: "Jake Shares the Swing",
