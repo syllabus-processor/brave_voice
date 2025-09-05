@@ -4,7 +4,7 @@
 class BraveVoiceGame {
   constructor() {
     this.gameState = {
-      currentScene: 'scene1',
+      currentScene: 'menu',
       confidenceLevel: 5,
       maxConfidence: 10,
       earnedBadges: [],
@@ -23,6 +23,11 @@ class BraveVoiceGame {
       pleaseInput: document.getElementById('pleaseInput'),
       previewText: document.getElementById('previewText')
     };
+    
+    // Create image element for scenes
+    this.sceneImage = document.createElement('img');
+    this.sceneImage.className = 'scene-image';
+    this.sceneImage.alt = 'Story illustration';
 
     this.initializeGame();
     this.setupEventListeners();
@@ -38,8 +43,8 @@ class BraveVoiceGame {
   setupEventListeners() {
     // Control buttons
     document.getElementById('btnReplay').addEventListener('click', () => {
-      this.gameState.currentScene = 'scene1';
-      this.renderScene('scene1');
+      this.gameState.currentScene = 'menu';
+      this.renderScene('menu');
       this.saveGameState();
     });
 
@@ -82,8 +87,23 @@ class BraveVoiceGame {
       return;
     }
 
-    // Update scene text with formatting
-    this.elements.sceneText.innerHTML = scene.text.replace(/\n/g, '<br>');
+    // Clear scene content
+    this.elements.sceneText.innerHTML = '';
+    
+    // Add image if scene has one
+    if (scene.image) {
+      this.sceneImage.src = scene.image;
+      this.sceneImage.style.display = 'block';
+      this.elements.sceneText.appendChild(this.sceneImage);
+    } else {
+      this.sceneImage.style.display = 'none';
+    }
+    
+    // Add scene text with formatting
+    const textDiv = document.createElement('div');
+    textDiv.className = 'scene-text-content';
+    textDiv.innerHTML = scene.text.replace(/\n/g, '<br>');
+    this.elements.sceneText.appendChild(textDiv);
 
     // Clear and render choice buttons
     this.elements.choiceContainer.innerHTML = '';
@@ -114,6 +134,13 @@ class BraveVoiceGame {
   }
 
   makeChoice(choice) {
+    // Handle special choice types
+    if (choice.type === 'menu') {
+      this.renderScene('menu');
+      this.saveGameState();
+      return;
+    }
+    
     const nextScene = window.storyData[choice.nextScene];
     
     if (nextScene && nextScene.isEnding) {
@@ -270,7 +297,7 @@ class BraveVoiceGame {
 
   resetGame() {
     this.gameState = {
-      currentScene: 'scene1',
+      currentScene: 'menu',
       confidenceLevel: 5,
       maxConfidence: 10,
       earnedBadges: [],
@@ -280,7 +307,7 @@ class BraveVoiceGame {
     localStorage.removeItem('braveVoiceGameState');
     localStorage.removeItem('braveVoiceLines');
     
-    this.renderScene('scene1');
+    this.renderScene('menu');
     this.updateConfidenceMeter(); 
     this.renderBadges();
   }
