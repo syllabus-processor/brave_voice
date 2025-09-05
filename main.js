@@ -838,5 +838,5 @@ document.head.appendChild(style);
 
 // Initialize the game when page loads
 document.addEventListener('DOMContentLoaded', () => {
-  new BraveVoiceGame();
+  window.game = new BraveVoiceGame();
 });
