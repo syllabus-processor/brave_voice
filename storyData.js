@@ -20,9 +20,9 @@ const storyData = {
         nextScene: "game1"
       },
       {
-        text: "📚 Continue Previous Story",
-        type: "continue",
-        nextScene: "scene1"
+        text: "🏫 The Friendship Circle Story",
+        type: "story",
+        nextScene: "school1"
       }
     ]
   },
@@ -491,6 +491,440 @@ const storyData = {
         nextScene: "menu"
       }
     ]
+  },
+
+  // Third Story Arc: School Friendship Story
+  school1: {
+    id: "school1",
+    title: "The Friendship Circle",
+    text: "It's lunch time at school, and Liam walks into the cafeteria with his lunch tray. He looks around for somewhere to sit.\n\nHe sees his classmates Maya and Alex sitting together at a table, laughing and talking. They look like they're having fun.\n\nLiam approaches their table hopefully.\n\nMaya: \"Oh, sorry Liam, we're saving this spot for Emma. She'll be here any minute.\"\n\nBut Liam can see there are other empty chairs. He feels left out and confused. What should he do?",
+    image: "images/School_hallway_social_situation_d8e2f85e.png",
+    choices: [
+      {
+        text: "Get angry and tell them they're being mean",
+        type: "aggressive",
+        nextScene: "school2A"
+      },
+      {
+        text: "Walk away quietly and sit alone",
+        type: "passive",
+        nextScene: "school2B"
+      },
+      {
+        text: "Ask if there's room for everyone",
+        type: "assertive",
+        nextScene: "school2C"
+      },
+      {
+        text: "Ask why they don't want you to sit there",
+        type: "curious",
+        nextScene: "school2D"
+      }
+    ]
+  },
+
+  // Aggressive path - School story
+  school2A: {
+    id: "school2A",
+    title: "Get Angry",
+    text: "Liam's face gets red and his voice gets loud.\n\nLiam: \"That's not fair! You're just being mean and excluding me on purpose!\"\n\nMaya and Alex look shocked and uncomfortable. Other kids nearby turn to stare.\n\nMaya: \"Whoa, Liam! We weren't trying to be mean. You don't have to yell at us.\"\n\nAlex: \"Yeah, why are you getting so upset?\"\n\nNow everyone is looking at Liam, and he feels embarrassed. What does he do next?",
+    image: "images/School_hallway_social_situation_d8e2f85e.png",
+    choices: [
+      {
+        text: "Storm off to eat lunch alone",
+        type: "aggressive",
+        nextScene: "school3A1"
+      },
+      {
+        text: "Try to apologize for yelling",
+        type: "repair",
+        nextScene: "school3A2"
+      },
+      {
+        text: "Explain why it felt unfair",
+        type: "clarify",
+        nextScene: "school3A3"
+      }
+    ]
+  },
+
+  // Passive path - School story
+  school2B: {
+    id: "school2B",
+    title: "Walk Away Quietly",
+    text: "Liam doesn't say anything. He just nods and walks away, feeling his stomach sink.\n\nHe finds an empty table in the corner and sits by himself. His sandwich doesn't taste very good anymore.\n\nLiam watches Maya and Alex laughing together. When Emma arrives, she sits down and they all continue having fun.\n\nLiam feels invisible and wonders if anyone would notice if he weren't there. What does he do?",
+    image: "images/School_playground_friendship_scene_50f546fe.png",
+    choices: [
+      {
+        text: "Spend the rest of lunch alone",
+        type: "passive",
+        nextScene: "school3B1"
+      },
+      {
+        text: "Try to join a different group",
+        type: "resilient",
+        nextScene: "school3B2"
+      },
+      {
+        text: "Go back and try to talk to them",
+        type: "delayed_assertive",
+        nextScene: "school3B3"
+      }
+    ]
+  },
+
+  // Assertive path - School story
+  school2C: {
+    id: "school2C",
+    title: "Ask About Room",
+    text: "Liam takes a breath and speaks kindly but clearly.\n\nLiam: \"I understand you're saving a seat for Emma. Is there room at the table for all of us? I'd really like to sit with you guys.\"\n\nMaya and Alex look at each other, then at the table.\n\nAlex: \"Actually, yeah, there's plenty of room. Emma can sit here, and you can sit over there.\"\n\nMaya smiles: \"Sorry, we didn't think about it that way. Of course you can sit with us!\"\n\nHow does Liam respond?",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    choices: [
+      {
+        text: "Sit down and join the conversation happily",
+        type: "confident",
+        nextScene: "school3C1"
+      },
+      {
+        text: "Sit down but still feel a little nervous",
+        type: "cautious",
+        nextScene: "school3C2"
+      },
+      {
+        text: "Thank them and invite others who look lonely",
+        type: "inclusive",
+        nextScene: "school3C3"
+      }
+    ]
+  },
+
+  // Curious path - School story
+  school2D: {
+    id: "school2D",
+    title: "Ask Why",
+    text: "Liam looks genuinely curious instead of upset.\n\nLiam: \"I'm just wondering - is there a reason you don't want me to sit here? Did I do something wrong?\"\n\nMaya looks surprised by the honest question.\n\nMaya: \"Oh no, you didn't do anything wrong! We were just... well, sometimes we like to talk about girl stuff with Emma.\"\n\nAlex adds: \"But that doesn't mean we don't like you. We just didn't think about how it would feel to be left out.\"\n\nHow should Liam respond?",
+    image: "images/School_hallway_social_situation_d8e2f85e.png",
+    choices: [
+      {
+        text: "Suggest having both friend time and group time",
+        type: "problem_solving",
+        nextScene: "school3D1"
+      },
+      {
+        text: "Share how it feels to be excluded",
+        type: "educational",
+        nextScene: "school3D2"
+      },
+      {
+        text: "Ask if you can sit nearby and join sometimes",
+        type: "compromise",
+        nextScene: "school3D3"
+      }
+    ]
+  },
+
+  // Aggressive endings - School story
+  school3A1: {
+    id: "school3A1",
+    title: "Storm Off Alone",
+    text: "Liam grabs his lunch tray and storms away to a table far from everyone else.\n\nHe eats his lunch in angry silence, occasionally glaring over at Maya and Alex. Other kids seem to avoid him because he looks upset.\n\nThe rest of lunch feels very long and lonely. Liam realizes his anger made the situation worse, not better.",
+    image: "images/School_playground_friendship_scene_50f546fe.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: -2,
+      badge: null,
+      reflection: "When we let anger take control, we often end up more alone than before. Liam's yelling pushed his classmates away and made lunch even lonelier."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  school3A2: {
+    id: "school3A2",
+    title: "Try to Apologize",
+    text: "Liam takes a deep breath and his voice gets quieter.\n\nLiam: \"I'm sorry I yelled at you guys. I felt left out and it made me upset, but yelling wasn't okay.\"\n\nMaya's face softens: \"Thanks for saying that, Liam. We didn't mean to make you feel left out.\"\n\nAlex nods: \"Want to sit with us? We can make room for everyone.\"\n\nLiam feels relieved that he could fix the situation.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Relationship Repair",
+      reflection: "Liam showed real maturity by apologizing after making a mistake. This helped turn a conflict into a learning moment for everyone."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  // Passive endings - School story
+  school3B1: {
+    id: "school3B1",
+    title: "Eat Lunch Alone",
+    text: "Liam spends the entire lunch period sitting by himself, picking at his food.\n\nHe watches other kids laughing and talking together, feeling more and more invisible. No one comes to talk to him.\n\nWhen lunch ends, Liam feels sad and wonders if he'll always eat alone. He wishes he had been brave enough to speak up.",
+    image: "images/School_playground_friendship_scene_50f546fe.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: -1,
+      badge: null,
+      reflection: "Sometimes staying quiet feels safer, but it can leave us feeling invisible. Liam missed a chance to advocate for himself and make connections."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  school3B2: {
+    id: "school3B2",
+    title: "Join Different Group",
+    text: "Liam looks around and notices Sam sitting with some other kids from his class. He walks over.\n\nLiam: \"Hi Sam, mind if I sit here?\"\n\nSam: \"Sure! We were just talking about the new superhero movie. Have you seen it?\"\n\nLiam discovers these kids are really nice and funny. Sometimes when one door closes, another opens.",
+    image: "images/School_hallway_social_situation_d8e2f85e.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Resilient Friend",
+      reflection: "Liam showed resilience by not giving up on finding friendship. Sometimes new opportunities appear when we stay open to them."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  // Assertive endings - School story
+  school3C1: {
+    id: "school3C1",
+    title: "Join Conversation Happily",
+    text: "Liam sits down with a big smile and jumps right into the conversation.\n\nWhen Emma arrives, she's happy to see Liam there too. The four of them end up having a great lunch together, laughing and sharing stories.\n\nLiam feels proud that he spoke up for himself in a kind way. His brave voice helped create more friendship, not less.",
+    image: "images/School_hallway_social_situation_d8e2f85e.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Friendship Advocate",
+      reflection: "Liam used his brave voice to advocate for inclusion, and everyone benefited! Speaking up kindly can create more friendship and connection."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  school3C3: {
+    id: "school3C3",
+    title: "Invite Others Too",
+    text: "As Liam sits down, he notices another classmate, Jordan, eating alone nearby.\n\nLiam: \"Hey, there's room for one more if Jordan wants to join us too.\"\n\nMaya looks over: \"Jordan! Want to sit with us?\"\n\nJordan's face lights up and they come over. Now their table is full of friends, all because Liam thought about including others.",
+    image: "images/School_hallway_social_situation_d8e2f85e.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Inclusion Champion",
+      reflection: "Liam not only advocated for himself but also thought about others who might feel left out. This is leadership through kindness!"
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  // Missing scenes for school story completion
+  school3A3: {
+    id: "school3A3",
+    title: "Explain Feelings",
+    text: "Liam takes a breath and tries to explain calmly.\n\nLiam: \"I felt hurt because it seemed like you didn't want me around. I know you're saving a seat for Emma, but there are other chairs.\"\n\nMaya nods slowly: \"I see what you mean. We didn't think about how it would feel from your side.\"\n\nAlex: \"We really weren't trying to be mean. Want to sit with us? There's definitely room.\"\n\nLiam feels better that he could explain his feelings clearly.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Feelings Teacher",
+      reflection: "Even after yelling, Liam was able to calm down and explain his feelings clearly. This helped his friends understand and led to inclusion."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  school3B3: {
+    id: "school3B3",
+    title: "Go Back and Talk",
+    text: "After sitting alone for a few minutes, Liam decides to try again. He walks back to Maya and Alex's table.\n\nLiam: \"I know you said you're saving seats, but I was wondering if maybe there's room for me too? I'd really like to eat lunch with friends.\"\n\nMaya looks up with a surprised smile: \"Oh! We didn't realize you wanted to join us. Of course there's room!\"\n\nLiam feels proud that he found his brave voice, even after staying quiet at first.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Second Chance Courage",
+      reflection: "Sometimes it takes a moment to find our brave voice. Liam showed that it's never too late to speak up for yourself and ask for what you need."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  school3C2: {
+    id: "school3C2",
+    title: "Sit Down Nervously",
+    text: "Liam sits down with Maya and Alex, but he still feels a little unsure about whether he's really welcome.\n\nAs lunch continues, Maya and Alex include him in their conversation and laugh at his jokes. Emma arrives and is friendly to him too.\n\nBy the end of lunch, Liam realizes his nervous feelings were unnecessary - his friends really did want him there.",
+    image: "images/School_hallway_social_situation_d8e2f85e.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Brave Beginner",
+      reflection: "Even when using our brave voice feels scary, it often leads to good outcomes. Liam's nervousness was normal, and his courage paid off."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  school3D1: {
+    id: "school3D1",
+    title: "Suggest Friend Time Solutions",
+    text: "Liam thinks for a moment, then smiles.\n\nLiam: \"That makes sense that you want time to talk about girl stuff. What if sometimes you have your special friend time, and sometimes we all sit together? That way everyone gets what they need.\"\n\nMaya's eyes light up: \"That's actually a really good idea! We could do girl talk time on Mondays and group time the rest of the week.\"\n\nAlex nods: \"I like that plan. Everyone gets included!\"\n\nLiam feels proud of finding a solution that works for everyone.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Solution Finder",
+      reflection: "Liam listened to his friends' needs and found a creative solution that included everyone. This is what great friendship looks like!"
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  school3D2: {
+    id: "school3D2",
+    title: "Share Exclusion Feelings",
+    text: "Liam decides to help his friends understand.\n\nLiam: \"I understand you want friend time together. When I get excluded though, it makes me feel like I'm not important or that you don't like me. I know that's not what you mean, but that's how it feels.\"\n\nMaya looks thoughtful: \"I never thought about it that way. I wouldn't want to feel left out either.\"\n\nAlex adds: \"We definitely like you, Liam. We should find a way to include everyone more often.\"\n\nLiam feels good about helping his friends understand different perspectives.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Empathy Teacher",
+      reflection: "Liam helped his friends understand how exclusion feels, creating more empathy and understanding. Teaching others about feelings helps everyone grow."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  school3D3: {
+    id: "school3D3",
+    title: "Ask to Sit Nearby",
+    text: "Liam thinks of a compromise.\n\nLiam: \"I understand you want to talk with Emma. Could I maybe sit at the table next to you guys? That way you can have your friend time, but I won't feel totally left out?\"\n\nMaya smiles: \"That sounds fair! And maybe when you're done with your friend talk, I could join the conversation?\"\n\n\"Definitely!\" says Alex. \"We can wave you over when we're talking about stuff everyone would enjoy.\"\n\nLiam feels good about finding a middle ground that respects everyone's needs.",
+    image: "images/School_hallway_social_situation_d8e2f85e.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Compromise Creator",
+      reflection: "Liam found a solution that respected everyone's needs - his friends' desire for private time and his need to not feel excluded. Compromise is a valuable social skill!"
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "school1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
   }
 };
 
@@ -535,6 +969,38 @@ const badges = {
   "Problem Solver": {
     name: "Problem Solver", 
     description: "Found a solution that worked for everyone"
+  },
+  "Friendship Advocate": {
+    name: "Friendship Advocate",
+    description: "Spoke up for inclusion and belonging"
+  },
+  "Inclusion Champion": {
+    name: "Inclusion Champion",
+    description: "Made sure everyone felt welcome"
+  },
+  "Resilient Friend": {
+    name: "Resilient Friend",
+    description: "Stayed positive and found new friendships"
+  },
+  "Feelings Teacher": {
+    name: "Feelings Teacher",
+    description: "Helped others understand emotions and perspectives"
+  },
+  "Second Chance Courage": {
+    name: "Second Chance Courage",
+    description: "Found brave voice after hesitating first"
+  },
+  "Solution Finder": {
+    name: "Solution Finder",
+    description: "Created win-win solutions for everyone"
+  },
+  "Empathy Teacher": {
+    name: "Empathy Teacher",
+    description: "Helped others understand different perspectives"
+  },
+  "Compromise Creator": {
+    name: "Compromise Creator",
+    description: "Found middle ground that worked for everyone"
   }
 };
 
