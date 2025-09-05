@@ -1,0 +1,204 @@
+Youth Skill Building - Assertiveness Pack
+
+Great choice! Let’s start with the screen-by-screen wireframe plan for Brave Voice Adventures. This isn’t visual wireframes yet, but a narrative layout describing what each screen will include, its function, and basic navigation flow. Then we’ll follow up with a detailed functional specification.
+
+🧭 App Wireframe Plan: Brave Voice Adventures
+
+📱 HOME SCREEN
+Title: Brave Voice Adventures
+ Main Elements:
+App Logo + Tagline (“Where Every Choice Builds Confidence!”)
+
+
+Buttons:
+
+
+▶️ Start Adventure
+
+
+🎨 Design Your Shield
+
+
+🛠 Practice Brave Voice
+
+
+📊 My Progress
+
+
+📚 Parent Zone (optional lock/pin)
+
+
+Background: Colorful forest/town/bedroom scene with soft animations
+
+
+
+🎮 1. START ADVENTURE (Story Select Screen)
+Elements:
+List of available adventure scenarios (thumbnail + short title)
+
+
+e.g., “Ruby and the Dragon Drawing”, “The Missing Controller”
+
+
+Visual “locks” on future episodes (unlocked as child progresses)
+
+
+Button: 🔄 Restart Story
+
+
+Navigation:
+Tap to enter any unlocked story
+
+
+
+📖 2. STORY PLAYER SCREEN (Choose-Your-Own Adventure Engine)
+Layout:
+Top: Background scene (changes per page)
+
+
+Middle: Character illustrations + dialogue text box
+
+
+Bottom: Two or three choice buttons
+
+
+Styled as large colorful buttons (e.g., “Yell”, “Say nothing”, “Use Brave Voice”)
+
+
+Other Elements:
+Progress bar or dots indicating current story part
+
+
+Optional: Speaker icon to listen to text (voiceover)
+
+
+Navigation:
+Tapping a choice leads to next story scene
+
+
+Choices affect “confidence meter” (optional gamification)
+
+
+
+🎤 3. BRAVE VOICE PRACTICE ZONE
+Elements:
+Visual prompt: “What would you say if someone took your toy without asking?”
+
+
+Step-by-step builder:
+
+
+“I feel...” → drop-down or emoji selection
+
+
+“When you...” → type or select from prompts
+
+
+“Please...” → write or select next step
+
+
+Record Button: 🎙 Record Your Brave Voice
+
+
+Playback Button: ▶️ Hear It Back
+
+
+Optional:
+Mirror view using front camera with animated emoji reactions
+
+
+
+🛡 4. DESIGN YOUR SHIELD
+Canvas Area:
+Large drawing space
+
+
+Drawing tools (color picker, pen size, eraser)
+
+
+Drag-and-drop stickers (stars, lightning bolts, hearts)
+
+
+Add text: “My Brave Voice Shield” or child’s name
+
+
+Buttons:
+🖼 Save to Gallery
+
+
+↩️ Undo / Clear
+
+
+📤 Export/Share (if enabled)
+
+
+
+📊 5. MY PROGRESS DASHBOARD
+Elements:
+Confidence Meter (tracks assertive choices made)
+
+
+Adventures Completed
+
+
+Badges Earned:
+
+
+“First Brave Voice Used!”
+
+
+“Shield Designer”
+
+
+“Voice Hero”
+
+
+Optional Avatar Customization
+
+
+
+👨‍👩‍👧 PARENT ZONE (PIN Protected)
+Elements:
+Overview of user activity
+
+
+Tips for coaching assertiveness at home
+
+
+Option to reset data / stories
+
+
+Settings:
+
+
+Volume
+
+
+Voiceover On/Off
+
+
+Privacy/Sharing settings
+
+
+
+🔚 THANK YOU / STORY END SCREEN
+Elements:
+Summary of what the child learned (e.g., “You used your Brave Voice and stayed calm!”)
+
+
+Badge earned (e.g., “Calm Communicator”)
+
+
+Replay Story / Try a Different Path
+
+
+Reflective Question:
+
+
+“When might you use your Brave Voice in real life?”
+
+
+
+Would you like me to now begin drafting the Detailed Functional Specification, mapping out technical and UI details for each of these screens?
+
+
