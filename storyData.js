@@ -443,6 +443,56 @@ const storyData = {
   },
 
   // Additional scenes for collaborative and educational paths
+  scene3C1: {
+    id: "scene3C1",
+    title: "Accept and Display",
+    text: "Liam feels proud that he used his brave voice and that Ruby listened.\n\nLiam: \"Thanks for saying that, Ruby. I accept your apology.\"\n\nHe carefully picks up his dragon drawing and pins it on his bulletin board where he can see it while he works.\n\nRuby watches: \"You know what? That actually looks really cool up there. You should keep drawing more stuff.\"\n\nLiam smiles, feeling confident about both his art and his ability to speak up for himself.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Confident Artist",
+      reflection: "Liam used his brave voice effectively and accepted Ruby's apology gracefully. He also took pride in his work by displaying it. This shows healthy self-confidence."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "scene1"
+      },
+      {
+        text: "Try a different story",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  scene3C2: {
+    id: "scene3C2",
+    title: "Nervous but Grateful",
+    text: "Even though Liam still feels a little nervous about standing up to Ruby, he's glad he did it.\n\nLiam: \"Thank you for apologizing, Ruby. I was scared to say something, but I'm glad I did.\"\n\nRuby: \"You didn't sound scared at all! You sounded really... grown up, I guess. Maybe I should think before I say stuff like that.\"\n\nLiam puts his drawing back on his desk, feeling proud that he found his brave voice even when it felt scary.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 1,
+      badge: "Brave Beginner",
+      reflection: "It's normal to feel nervous when using our brave voice for the first time. Liam showed courage by speaking up despite his nervousness, and it led to a positive outcome."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "scene1"
+      },
+      {
+        text: "Try a different story",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
   scene3C3: {
     id: "scene3C3",
     title: "Explain About Art",
