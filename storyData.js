@@ -1470,6 +1470,30 @@ const storyData = {
     ]
   },
 
+  playground2D: {
+    id: "playground2D",
+    title: "Ask How Long He Plans to Use It",
+    text: "Liam approaches Jake with a curious, friendly tone.\n\nLiam: \"Hi Jake! I was wondering - how much longer are you planning to use the swing? I'd love to have a turn when you're done.\"\n\nJake looks up from his conversation with Marcus.\n\nJake: \"Oh hey, Liam! We were just talking and lost track of time. We've been here for like 20 minutes just chatting.\"\n\nMarcus adds: \"Yeah, we're not really even swinging much. We just like sitting here.\"\n\nJake seems to realize they've been taking up the swing without really using it. How does the conversation continue?",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    choices: [
+      {
+        text: "Ask if you can have a turn since they're just talking",
+        type: "direct_request",
+        nextScene: "playground3D1"
+      },
+      {
+        text: "Suggest they could talk somewhere else",
+        type: "solution_focused",
+        nextScene: "playground3D2"
+      },
+      {
+        text: "Offer to wait but ask for an estimate",
+        type: "patient_inquiry",
+        nextScene: "playground3D3"
+      }
+    ]
+  },
+
   playground3A1: {
     id: "playground3A1",
     title: "Keep Arguing",
@@ -1643,6 +1667,131 @@ const storyData = {
         nextScene: "menu"
       }
     ]
+  },
+
+  playground3C2: {
+    id: "playground3C2",
+    title: "Jake Says Just a Few More Minutes",
+    text: "Jake nods understandingly.\n\nJake: \"Thanks for asking so nicely! Marcus and I are having an important conversation, but we'll be done in just a few more minutes. Is that okay?\"\n\nLiam smiles: \"Of course! I can wait a little longer. Take your time.\"\n\nMarcus adds: \"You're really patient, Liam. We appreciate that!\"\n\nA few minutes later, Jake gets up and waves Liam over: \"All yours! Thanks for being so understanding.\"\n\nLiam feels good about being patient and respectful, and gets his turn on the swing.",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Patient Communicator",
+      reflection: "Liam showed patience and understanding while still asking for what he wanted. This respectful approach led to getting his turn and earning appreciation from others."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  playground3C3: {
+    id: "playground3C3",
+    title: "Jake Suggests Taking Turns",
+    text: "Jake's face lights up with a great idea.\n\nJake: \"You know what? You asked so nicely, and we can see you really love this swing. How about we all take turns? We can do 5-minute rotations so everyone gets a chance.\"\n\nMarcus nods: \"That's a great idea! We could even time each other.\"\n\nLiam feels excited: \"That sounds perfect! Thanks for including me!\"\n\nThey spend the rest of their park time taking turns and having fun together. Liam made new friends by speaking up respectfully.",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 3,
+      badge: "Friendship Builder",
+      reflection: "Liam's polite request led to an even better outcome than he expected! When we communicate respectfully, people often want to find solutions that work for everyone."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  playground3D1: {
+    id: "playground3D1",
+    title: "Ask for a Turn Since They're Just Talking",
+    text: "Liam speaks up confidently but kindly.\n\nLiam: \"Since you're just talking and not really swinging, would it be okay if I had a turn? You could continue your conversation over by the benches.\"\n\nJake looks a bit embarrassed: \"Oh wow, you're totally right. We weren't really using the swing properly. Sorry about that!\"\n\nMarcus agrees: \"Yeah, that's fair. Here, take the swing, Liam. We can finish talking over there.\"\n\nLiam feels proud that he spoke up clearly and fairly, and Jake and Marcus respect his reasonable request.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Fair Communicator",
+      reflection: "Liam used his brave voice to point out a fair solution. When we speak clearly and reasonably, others often appreciate our honesty and want to do the right thing."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  playground3D2: {
+    id: "playground3D2",
+    title: "Suggest They Talk Somewhere Else",
+    text: "Liam offers a helpful suggestion.\n\nLiam: \"It sounds like you're having a really good conversation! There are some nice benches over by the trees where you could talk more comfortably. Then I could use the swing for actual swinging.\"\n\nJake smiles: \"That's actually a great idea! These benches do look more comfortable for talking.\"\n\nMarcus stands up: \"Yeah, and you clearly want to actually swing, not just sit. Thanks for the good suggestion, Liam!\"\n\nLiam feels happy that he found a solution that worked well for everyone.",
+    image: "images/Playground_equipment_sharing_conflict_75054c17.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Solution Finder",
+      reflection: "Liam used his problem-solving skills to suggest a win-win solution. Offering helpful alternatives often makes everyone happier than just asking for what we want."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  playground3D3: {
+    id: "playground3D3",
+    title: "Ask for a Time Estimate",
+    text: "Liam shows patience while still advocating for himself.\n\nLiam: \"I'm happy to wait a bit longer, but could you give me an idea of how much more time you need? That way I'll know what to expect.\"\n\nJake looks thoughtful: \"You know what, that's really mature of you to ask. We could probably wrap up our conversation in about 5 minutes.\"\n\nMarcus nods: \"Yeah, and honestly, we've been here a while. Thanks for being so patient and polite about asking.\"\n\nTrue to their word, they finish their conversation in a few minutes and Liam gets his turn. Everyone feels good about the respectful interaction.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Patient Advocate",
+      reflection: "Liam balanced patience with self-advocacy by asking for clear expectations. This mature approach earned respect and got him what he wanted."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "playground1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
   }
 };
 
@@ -1751,6 +1900,26 @@ const badges = {
   "Shield Creator": {
     name: "Shield Creator",
     description: "Designed a shield representing your brave voice"
+  },
+  "Patient Communicator": {
+    name: "Patient Communicator",
+    description: "Showed patience while still asking for what you needed"
+  },
+  "Friendship Builder": {
+    name: "Friendship Builder",
+    description: "Used brave voice to build new friendships"
+  },
+  "Fair Communicator": {
+    name: "Fair Communicator",
+    description: "Spoke up clearly and fairly for everyone"
+  },
+  "Solution Finder": {
+    name: "Solution Finder",
+    description: "Found creative solutions that work for everyone"
+  },
+  "Patient Advocate": {
+    name: "Patient Advocate",
+    description: "Balanced patience with standing up for yourself"
   }
 };
 
