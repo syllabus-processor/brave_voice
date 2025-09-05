@@ -1293,6 +1293,56 @@ const storyData = {
     ]
   },
 
+  sports3D1: {
+    id: "sports3D1",
+    title: "Explain Your Interests",
+    text: "Liam brightens up and explains enthusiastically.\n\nLiam: \"Oh, I love both reading and soccer! I know I usually read during recess, but that's because I thought you guys might not want me to play. I've been practicing soccer with my dad at home!\"\n\nTyler looks surprised: \"Really? We had no idea! We thought you only liked quiet activities.\"\n\nMaya nods: \"Yeah, we didn't want to interrupt your reading time. But if you like soccer too, you should definitely join us!\"\n\nLiam feels happy that he could clear up the misunderstanding by sharing more about himself.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Brave Speaker",
+      reflection: "Liam used his brave voice to share more about his interests and clear up a misunderstanding. Being open about who we are helps others understand us better."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "sports1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  sports3D2: {
+    id: "sports3D2",
+    title: "Ask for Future Inclusion",
+    text: "Liam nods understandingly and speaks up clearly.\n\nLiam: \"I really appreciate you explaining that! I do love reading, but I also really enjoy soccer. Could you maybe ask me next time if I want to join? I'd love to be included when you're forming teams.\"\n\nTyler smiles: \"Absolutely! We had no idea you were interested. From now on, we'll make sure to invite you.\"\n\nMaya adds: \"And hey, since we're here now and there's still time left in recess, want to join us for the rest of the game?\"\n\nLiam feels good about speaking up for what he wants and asking for inclusion in a respectful way.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Calm Communicator",
+      reflection: "Liam used his brave voice to clearly ask for what he wanted while being understanding of others. This kind of respectful communication builds lasting friendships."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "sports1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
   sports3D3: {
     id: "sports3D3",
     title: "Suggest Turn-Taking",
