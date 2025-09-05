@@ -153,6 +153,11 @@ button.ghost {
   border-color: #334155;
   color: var(--text);
 }
+button.secondary {
+  background: linear-gradient(45deg, #10b981, #059669);
+  border-color: #065f46;
+  color: white;
+}
 button.danger {
   border-color: var(--danger);
   color: #fecaca;

@@ -63,6 +63,10 @@ class BraveVoiceGame {
       this.closeBraveVoiceBuilder();
     });
 
+    document.getElementById('btnPracticeSpeech').addEventListener('click', () => {
+      this.speakBraveVoice();
+    });
+    
     document.getElementById('btnSaveLine').addEventListener('click', () => {
       this.saveBraveVoiceLine();
     });
@@ -269,6 +273,58 @@ class BraveVoiceGame {
 
     this.elements.previewText.textContent = 
       `I feel ${feel} when ${when}. ${please.charAt(0).toUpperCase() + please.slice(1)}.`;
+  }
+
+  // Text-to-speech functionality for Brave Voice practice
+  speakBraveVoice() {
+    const text = this.elements.previewText.textContent;
+    
+    // Check if browser supports speech synthesis
+    if ('speechSynthesis' in window) {
+      // Cancel any ongoing speech
+      speechSynthesis.cancel();
+      
+      // Create new utterance
+      const utterance = new SpeechSynthesisUtterance(text);
+      
+      // Configure voice settings for children
+      utterance.rate = 0.9; // Slightly slower for clarity
+      utterance.pitch = 1.1; // Slightly higher pitch
+      utterance.volume = 0.8;
+      utterance.lang = 'en-US';
+      
+      // Try to use a gentle, clear voice if available
+      const voices = speechSynthesis.getVoices();
+      const preferredVoice = voices.find(voice => 
+        voice.name.includes('Female') || 
+        voice.name.includes('Samantha') ||
+        voice.name.includes('Karen')
+      );
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
+      
+      // Event handlers
+      utterance.onstart = () => {
+        console.log('Brave Voice practice started');
+        // Optionally update UI to show speaking
+      };
+      
+      utterance.onend = () => {
+        console.log('Brave Voice practice completed');
+        // Optionally show encouragement message
+      };
+      
+      utterance.onerror = (event) => {
+        console.warn('Speech synthesis error:', event.error);
+        alert('Speech not available. Try practicing out loud instead!');
+      };
+      
+      // Speak the text
+      speechSynthesis.speak(utterance);
+    } else {
+      alert('Speech feature not available in your browser. Practice saying it out loud!');
+    }
   }
 
   saveBraveVoiceLine() {

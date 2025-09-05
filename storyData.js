@@ -543,6 +543,56 @@ const storyData = {
     ]
   },
 
+  scene3D2: {
+    id: "scene3D2",
+    title: "Share Hurt Feelings",
+    text: "Liam decides to be honest about how Ruby's words affected him.\n\nLiam: \"When you said my drawing looked bad, it really hurt my feelings. I put a lot of work into it, and art is something that makes me happy.\"\n\nRuby looks down at her feet, then back at the drawing.\n\nRuby: \"I'm sorry, Liam. I didn't realize how much it meant to you. I was just being silly. Your dragon actually looks really cool - I wish I could draw like that.\"\n\nLiam feels good that he shared his feelings honestly and that Ruby understood.",
+    image: "images/Brave_Voice_confidence_illustration_4e492cd8.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Feelings Communicator",
+      reflection: "Liam showed courage by honestly sharing how Ruby's words hurt him. This helped Ruby understand the impact of her words and led to a genuine apology."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "scene1"
+      },
+      {
+        text: "Try a different story",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
+  scene3D3: {
+    id: "scene3D3",
+    title: "Share Art Portfolio",
+    text: "Liam gets excited and pulls out a folder from his desk.\n\nLiam: \"Want to see some other drawings I've made? I've been working on a whole series of fantasy creatures.\"\n\nRuby's eyes widen as she looks through the drawings: \"Wow, Liam! These are amazing! You drew all of these? This phoenix is incredible!\"\n\nLiam beams with pride. Ruby sits down next to him: \"Would you teach me how to draw fire like this?\"\n\nThey spend the afternoon drawing together, with Liam sharing his techniques.",
+    image: "images/Liam's_cozy_creative_bedroom_dca9cda1.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Art Mentor",
+      reflection: "By sharing his artwork proudly, Liam turned a negative moment into a positive one. Confidence in our abilities can inspire others and build connections."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "scene1"
+      },
+      {
+        text: "Try a different story",
+        type: "menu",
+        nextScene: "menu"
+      }
+    ]
+  },
+
   // Third Story Arc: School Friendship Story
   school1: {
     id: "school1",
@@ -1051,6 +1101,18 @@ const badges = {
   "Compromise Creator": {
     name: "Compromise Creator",
     description: "Found middle ground that worked for everyone"
+  },
+  "Feelings Communicator": {
+    name: "Feelings Communicator",
+    description: "Honestly shared emotions and feelings"
+  },
+  "Art Mentor": {
+    name: "Art Mentor",
+    description: "Shared talents and inspired others"
+  },
+  "Confident Artist": {
+    name: "Confident Artist",
+    description: "Displayed work with pride and confidence"
   }
 };
 
