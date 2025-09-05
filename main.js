@@ -278,53 +278,129 @@ class BraveVoiceGame {
   // Text-to-speech functionality for Brave Voice practice
   speakBraveVoice() {
     const text = this.elements.previewText.textContent;
+    const practiceButton = document.getElementById('btnPracticeSpeech');
     
     // Check if browser supports speech synthesis
     if ('speechSynthesis' in window) {
       // Cancel any ongoing speech
       speechSynthesis.cancel();
       
-      // Create new utterance
-      const utterance = new SpeechSynthesisUtterance(text);
+      // Update button to show it's working
+      const originalText = practiceButton.textContent;
+      practiceButton.textContent = '🔊 Speaking...';
+      practiceButton.disabled = true;
       
-      // Configure voice settings for children
-      utterance.rate = 0.9; // Slightly slower for clarity
-      utterance.pitch = 1.1; // Slightly higher pitch
-      utterance.volume = 0.8;
-      utterance.lang = 'en-US';
+      // Function to set up and speak
+      const speak = () => {
+        // Create new utterance
+        const utterance = new SpeechSynthesisUtterance(text);
+        
+        // Configure voice settings for children
+        utterance.rate = 0.9; // Slightly slower for clarity
+        utterance.pitch = 1.1; // Slightly higher pitch
+        utterance.volume = 0.8;
+        utterance.lang = 'en-US';
+        
+        // Try to use a gentle, clear voice if available
+        const voices = speechSynthesis.getVoices();
+        if (voices.length > 0) {
+          const preferredVoice = voices.find(voice => 
+            voice.name.includes('Female') || 
+            voice.name.includes('Samantha') ||
+            voice.name.includes('Karen') ||
+            voice.name.includes('Google UK English Female') ||
+            voice.name.includes('Microsoft Zira')
+          );
+          if (preferredVoice) {
+            utterance.voice = preferredVoice;
+          }
+        }
+        
+        // Event handlers
+        utterance.onstart = () => {
+          console.log('Brave Voice practice started');
+        };
+        
+        utterance.onend = () => {
+          console.log('Brave Voice practice completed');
+          // Reset button
+          practiceButton.textContent = originalText;
+          practiceButton.disabled = false;
+          // Show encouragement
+          this.showEncouragement();
+        };
+        
+        utterance.onerror = (event) => {
+          console.warn('Speech synthesis error:', event.error);
+          // Reset button
+          practiceButton.textContent = originalText;
+          practiceButton.disabled = false;
+          alert('Speech not available right now. Try practicing out loud instead!');
+        };
+        
+        // Speak the text
+        speechSynthesis.speak(utterance);
+      };
       
-      // Try to use a gentle, clear voice if available
+      // Handle voice loading (some browsers need this)
       const voices = speechSynthesis.getVoices();
-      const preferredVoice = voices.find(voice => 
-        voice.name.includes('Female') || 
-        voice.name.includes('Samantha') ||
-        voice.name.includes('Karen')
-      );
-      if (preferredVoice) {
-        utterance.voice = preferredVoice;
+      if (voices.length === 0) {
+        // Wait for voices to load
+        speechSynthesis.addEventListener('voiceschanged', () => {
+          speak();
+        }, { once: true });
+        
+        // Fallback timeout in case voices don't load
+        setTimeout(() => {
+          if (practiceButton.disabled) {
+            speak();
+          }
+        }, 1000);
+      } else {
+        speak();
       }
-      
-      // Event handlers
-      utterance.onstart = () => {
-        console.log('Brave Voice practice started');
-        // Optionally update UI to show speaking
-      };
-      
-      utterance.onend = () => {
-        console.log('Brave Voice practice completed');
-        // Optionally show encouragement message
-      };
-      
-      utterance.onerror = (event) => {
-        console.warn('Speech synthesis error:', event.error);
-        alert('Speech not available. Try practicing out loud instead!');
-      };
-      
-      // Speak the text
-      speechSynthesis.speak(utterance);
     } else {
       alert('Speech feature not available in your browser. Practice saying it out loud!');
     }
+  }
+
+  // Show encouragement after voice practice
+  showEncouragement() {
+    const encouragements = [
+      'Great job practicing your Brave Voice! 🌟',
+      'You sound confident and clear! Keep practicing! 💪',
+      'Wonderful! Your Brave Voice is getting stronger! ⭐',
+      'Excellent practice! You\'re building confidence! 🎯',
+      'Amazing work! Your voice sounds brave and kind! 🏆'
+    ];
+    
+    const randomEncouragement = encouragements[Math.floor(Math.random() * encouragements.length)];
+    
+    // Create a temporary encouragement message
+    const encouragement = document.createElement('div');
+    encouragement.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(45deg, #10b981, #059669);
+      color: white;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-align: center;
+      z-index: 10000;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 2px solid #065f46;
+    `;
+    encouragement.textContent = randomEncouragement;
+    
+    document.body.appendChild(encouragement);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+      encouragement.remove();
+    }, 3000);
   }
 
   saveBraveVoiceLine() {
