@@ -1293,6 +1293,31 @@ const storyData = {
     ]
   },
 
+  sports3D3: {
+    id: "sports3D3",
+    title: "Suggest Turn-Taking",
+    text: "Liam thinks for a moment, then smiles with a helpful idea.\n\nLiam: \"You know what? I love both reading and soccer! Maybe we could take turns - some recesses I could join soccer, and other times I'll keep reading. That way everyone gets what they enjoy.\"\n\nTyler nods: \"That's actually a really smart idea. We never thought about doing different activities on different days.\"\n\nMaya adds: \"Yeah! And if you want to play today, you're totally welcome. Thanks for helping us figure out a good system.\"\n\nLiam feels proud that he found a solution that works for everyone.",
+    image: "images/Kids_soccer_field_exclusion_scene_c78624f2.png",
+    isEnding: true,
+    outcome: {
+      confidenceChange: 2,
+      badge: "Problem Solver",
+      reflection: "Liam used his brave voice to find a creative solution that respected everyone's different interests. Problem-solving like this builds stronger friendships and communities."
+    },
+    choices: [
+      {
+        text: "Try the story again",
+        type: "replay",
+        nextScene: "sports1"
+      },
+      {
+        text: "Back to main menu",
+        type: "menu", 
+        nextScene: "menu"
+      }
+    ]
+  },
+
   // Fifth Story Arc: Playground Equipment Story
   playground1: {
     id: "playground1",
