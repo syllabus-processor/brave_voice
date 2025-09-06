@@ -1,0 +1,448 @@
+Youth Skill Building App - Assertiveness Pack
+Detailed Functional Specification
+Here’s the Detailed Functional Specification (DFS) for Brave Voice Adventures. This document breaks down each screen into functional components, UI elements, and technical notes. This is ideal for communicating with a developer or design team.
+
+🛠️ Brave Voice Adventures – Functional Specification
+
+1. 🏠 HOME SCREEN
+Purpose:
+Primary navigation hub.
+UI Elements:
+App Title & Logo
+
+
+Buttons:
+
+
+▶️ Start Adventure (btn_startAdventure)
+
+
+🎨 Design Your Shield (btn_designShield)
+
+
+🛠 Practice Brave Voice (btn_practiceVoice)
+
+
+📊 My Progress (btn_myProgress)
+
+
+📚 Parent Zone (btn_parentZone, locked via 4-digit PIN)
+
+
+Background Animation (looped GIF or Lottie)
+
+
+Music toggle (btn_musicToggle)
+
+
+Functional Requirements:
+Buttons route to appropriate screens
+
+
+App remembers last story progress
+
+
+PIN for Parent Zone (stored locally, default: 0000)
+
+
+
+2. 📚 STORY SELECT SCREEN
+Purpose:
+Allows user to choose a story adventure.
+UI Elements:
+Story Cards with title, thumbnail, and description
+
+
+Locked stories: greyed out with “Complete X to unlock”
+
+
+Progress stars per story
+
+
+🏠 Back to Home (btn_home)
+
+
+Functional Requirements:
+Story lock/unlock state saved in local storage
+
+
+Tapping a card opens the first scene in that story
+
+
+
+3. 🎬 STORY PLAYER (CYOA ENGINE)
+Purpose:
+Interactive branching story experience.
+UI Elements:
+Story Background Image (img_background)
+
+
+Character sprites (img_character)
+
+
+Text Box with narrator/dialogue (lbl_dialogue)
+
+
+2–3 Choice Buttons (btn_choice1, btn_choice2, btn_choice3)
+
+
+Confidence Meter Progress (optional gamification bar)
+
+
+▶️ Play Audio (voiceover)
+
+
+🏠 Back to Story Select
+
+
+Functional Requirements:
+Story data loaded from JSON or Firebase structure
+
+
+Each choice modifies internal state (confidenceScore, pathTaken)
+
+
+End scene leads to Reflect/Reward screen
+
+
+
+4. 🎤 BRAVE VOICE BUILDER
+Purpose:
+Teach structured assertive communication.
+UI Elements:
+Sentence Builder (3 parts):
+
+
+“I feel…” (emoji or dropdown: sad, mad, nervous, embarrassed)
+
+
+“When you…” (text field or prefilled options)
+
+
+“Please…” (text field)
+
+
+Constructed sentence preview
+
+
+🎙 Record Button (btn_record)
+
+
+▶️ Play Button (btn_playback)
+
+
+🧍 Mirror Mode (optional camera with emoji overlay)
+
+
+Functional Requirements:
+Sentence saved locally to replay
+
+
+Audio saved to temporary cache (no external storage)
+
+
+Playback uses built-in audio renderer
+
+
+Mirror view uses front-facing camera + animated emojis
+
+
+
+5. 🛡 SHIELD DESIGNER
+Purpose:
+Encourage creative expression and personalization.
+UI Elements:
+Drawing canvas (touch input support)
+
+
+Tool buttons:
+
+
+🖌 Pen size/color picker (btn_tools)
+
+
+❌ Clear All (btn_clear)
+
+
+↩️ Undo (btn_undo)
+
+
+🖼 Save (btn_save)
+
+
+📤 Share (btn_share)
+
+
+Sticker tray (drag-and-drop)
+
+
+Text Tool: Add child’s name or phrase
+
+
+Functional Requirements:
+Canvas exportable as PNG
+
+
+Save to internal app storage or photo gallery
+
+
+Share option checks parental permission
+
+
+Local file named by user ID + timestamp
+
+
+
+6. 📊 PROGRESS DASHBOARD
+Purpose:
+Track story engagement and behavioral learning.
+UI Elements:
+Badge Collection Grid
+
+
+Confidence Meter (graph or XP bar)
+
+
+List of completed stories
+
+
+Replay buttons for each completed path
+
+
+🏠 Back button
+
+
+Functional Requirements:
+Badges awarded via logic tree
+
+
+Progress data saved using SharedPreferences or Firebase
+
+
+Visual cues for story progress (% complete)
+
+
+
+7. 🔐 PARENT ZONE
+Purpose:
+Give parents insight and control.
+UI Elements:
+PIN Entry Screen (set/change/reset)
+
+
+View Story Progress & Voice Practice logs
+
+
+Settings Panel:
+
+
+🔊 Mute Audio
+
+
+📤 Enable Sharing
+
+
+🎧 Enable Voiceovers
+
+
+🗑 Reset Progress (btn_reset)
+
+
+Parental Tips (scrollable list of guidance)
+
+
+Functional Requirements:
+PIN protection enforced on re-entry
+
+
+Toggle switches saved locally
+
+
+Optional Cloud Sync (for educator mode)
+
+
+
+8. 🏁 STORY ENDING SCREEN
+Purpose:
+Reinforce learning and reward the child.
+UI Elements:
+“You Used Your Brave Voice!” badge popup
+
+
+Summary of choices
+
+
+Confidence Points or Score
+
+
+Reflective question: “What’s a real-life time you might try this?”
+
+
+Buttons:
+
+
+🔄 Replay Story
+
+
+🏠 Home
+
+
+Functional Requirements:
+Confidence score displayed as visual (stars, meter)
+
+
+Reflections can be saved as journal entry (optional feature)
+
+
+
+9. ⚙️ BACKEND / STORAGE LOGIC
+Local Storage: SharedPreferences (for PIN, progress, choices, saved voice lines)
+
+
+Cloud Storage: Firebase (for backup, syncing progress across devices)
+
+
+Asset Management: Images, JSON story trees, and audio in /assets/
+
+
+Audio: WAV/MP3 files, 10–20s each (voiceover, feedback)
+
+
+Data Schema: JSON for each story with:
+
+
+Scene ID
+
+
+Scene text
+
+
+Background/character assets
+
+
+Choices and next-scene mappings
+
+
+Event hooks (e.g., award badge, update confidence meter)
+
+
+
+Would you like me to help package this spec into a formatted document (PDF/Word)? Or should we begin prototyping the story JSON structure and audio scripts next?
+
+Perfect — let’s map out next steps so you can carry this project forward in a structured way. Based on what we’ve developed so far (clinical exercise → story → CYOA → wireframe → functional spec → memo/email), here’s a logical progression:
+
+✅ Next Steps for Brave Voice Adventures
+1. Finalize Story Content
+Draft at least 2–3 complete story arcs (each with multiple branching choices).
+
+
+Ensure each story includes:
+
+
+Passive → consequence
+
+
+Aggressive → consequence
+
+
+Assertive → reward/growth
+
+
+Add reflection prompts at the end of each story.
+
+
+(This ensures a usable MVP story engine.)
+
+2. Prototype Design
+Use a lightweight tool like Figma or Canva to create visual wireframes for:
+
+
+Home screen
+
+
+Story screen with branching buttons
+
+
+Brave Voice Builder
+
+
+Shield Designer
+
+
+This will help you communicate the concept visually to Rob, Julie, or potential collaborators.
+
+
+
+3. Technical Path Decision
+Decide if you want to:
+
+
+Prototype in no-code (Thunkable, Kodular, MIT App Inventor — quick but limited)
+
+
+Prototype in Firebase Studio / Android Studio Cloud (more control, steeper learning curve)
+
+
+(Since you’re testing feasibility, a no-code proof-of-concept might be fastest to show your supervisors and peers.)
+
+4. Clinical Validation
+Run your story content and Brave Voice Builder by supervisors/peers.
+
+
+Check: Are the assertiveness scripts age-appropriate?
+
+
+Do the story choices reflect realistic sibling dynamics?
+
+
+
+5. Pilot Testing Plan
+Identify a small group (2–4 kids) who might trial the prototype in a counseling setting.
+
+
+Collect feedback on:
+
+
+Engagement (fun, relatable?)
+
+
+Comprehension (do they understand assertiveness better?)
+
+
+Usability (easy to navigate?)
+
+
+
+6. Documentation & Dissemination
+Prepare a project brief for academic/professional sharing:
+
+
+Origin (clinical need)
+
+
+Method (story + app design)
+
+
+Prototype screenshots
+
+
+Feedback results
+
+
+Possible pathways:
+
+
+Internal grant or capstone project at SJFU
+
+
+Poster or presentation at a counseling conference
+
+
+Independent publication on digital therapeutic tools for children
+
+
+
+👉 So here’s my question to you:
+ Would you like me to start drafting the story arcs in detail (with choice trees and dialogue), or should we move into visual wireframes first so you can show Rob and Julie something more tangible?
+
+

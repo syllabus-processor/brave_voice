@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brave Voice Adventures (Prototype)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Brave Voice Adventures</h1>
+    <p class="tagline">Where every choice builds confidence</p>
+  </header>
+
+  <main class="app-main">
+    <!-- HUD -->
+    <section class="hud">
+      <div class="meter">
+        <label>Confidence</label>
+        <div class="meter-bar">
+          <div id="confidenceFill" class="meter-fill" style="width:50%"></div>
+        </div>
+        <span id="confidenceValue">5 / 10</span>
+      </div>
+
+      <div class="badges">
+        <label>Badges</label>
+        <div id="badgeList" class="badge-list"></div>
+      </div>
+    </section>
+
+    <!-- Scene -->
+    <section class="scene">
+      <div id="sceneText" class="scene-text">
+        <!-- Scene text populated by JS -->
+      </div>
+      <div id="choiceContainer" class="choices">
+        <!-- Choice buttons populated by JS -->
+      </div>
+    </section>
+
+    <!-- Controls -->
+    <section class="controls">
+      <button id="btnReplay" class="ghost">↺ Replay</button>
+      <button id="btnReset" class="ghost danger">🗑 Reset</button>
+      <button id="btnPractice" class="primary">🎤 Practice Brave Voice</button>
+    </section>
+  </main>
+
+  <!-- Brave Voice Builder Modal -->
+  <div id="builderModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>Practice Your Brave Voice</h2>
+      <p class="helper">Use the structure: <strong>I feel ___ when you ___. Please ___.</strong></p>
+
+      <div class="builder-grid">
+        <div>
+          <label for="feelSelect">I feel…</label>
+          <select id="feelSelect">
+            <option value="sad">sad</option>
+            <option value="upset">upset</option>
+            <option value="embarrassed">embarrassed</option>
+            <option value="angry">angry</option>
+            <option value="frustrated">frustrated</option>
+            <option value="nervous">nervous</option>
+          </select>
+        </div>
+        <div>
+          <label for="whenInput">when you…</label>
+          <input id="whenInput" type="text" placeholder="make fun of my art" />
+        </div>
+        <div>
+          <label for="pleaseInput">Please…</label>
+          <input id="pleaseInput" type="text" placeholder="stop." />
+        </div>
+      </div>
+
+      <div class="preview">
+        <label>Preview</label>
+        <div id="previewText" class="preview-text">
+          I feel upset when you make fun of my art. Please stop.
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="btnCloseModal" class="ghost">Close</button>
+        <button id="btnSaveLine" class="primary">Save Line</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <small>Prototype • JSON-driven story engine • © Brave Voice Adventures</small>
+  </footer>
+
+  <script src="storyData.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
