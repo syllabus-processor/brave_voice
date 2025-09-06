@@ -12,36 +12,40 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Child App Server"
+args = "Brave Voice Adventures"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Therapist Portal"
+args = "Therapist Dashboard"
 
 [[workflows.workflow]]
-name = "Child App Server"
+name = "Brave Voice Adventures"
 author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python -m http.server 8000"
-waitForPort = 8000
-
-[workflows.workflow.metadata]
-outputType = "console"
-
-[[workflows.workflow]]
-name = "Therapist Portal"
-author = "agent"
+args = "python -m http.server 5000 --bind 0.0.0.0"
+waitForPort = 5000
 
 [workflows.workflow.metadata]
 outputType = "webview"
 
+[[workflows.workflow]]
+name = "Therapist Dashboard"
+author = "agent"
+
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd therapist-portal && export NODE_OPTIONS=\"--max_old_space_size=1024\" && npx next dev --port 5000 --hostname 0.0.0.0"
-waitForPort = 5000
+args = "cd therapist-portal && NODE_OPTIONS=\"--max_old_space_size=1024\" npx next dev --port 3000 --hostname 0.0.0.0"
+waitForPort = 3000
+
+[workflows.workflow.metadata]
+outputType = "console"
 
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
