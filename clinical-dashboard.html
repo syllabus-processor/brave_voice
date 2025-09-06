@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brave Voice Clinical Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    
+    /* Header */
+    .clinical-header {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .logo-section h1 {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      font-weight: 600;
+    }
+    
+    .logo-section p {
+      opacity: 0.9;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .role-badge {
+      background: rgba(255,255,255,0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    /* Navigation */
+    .nav-tabs {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0 2rem;
+      overflow-x: auto;
+    }
+    
+    .nav-tabs-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-tab {
+      padding: 1rem 0;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      font-weight: 500;
+      color: #64748b;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-tab.active {
+      color: #3b82f6;
+      border-bottom-color: #3b82f6;
+    }
+    
+    .nav-tab:hover {
+      color: #3b82f6;
+    }
+    
+    /* Main Content */
+    .main-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .section {
+      display: none;
+    }
+    
+    .section.active {
+      display: block;
+    }
+    
+    /* Client List */
+    .controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .search-filter {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .search-input {
+      padding: 0.5rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      min-width: 250px;
+      font-size: 0.9rem;
+    }
+    
+    .filter-select {
+      padding: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+    }
+    
+    .btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      min-height: 40px;
+    }
+    
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #2563eb;
+    }
+    
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #d1d5db;
+    }
+    
+    /* Cards */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    
+    .card-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+    
+    .card-header h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-content {
+      padding: 1.5rem;
+    }
+    
+    /* Client Table */
+    .client-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .client-table th {
+      background: #f8fafc;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: #475569;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .client-table td {
+      padding: 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+    }
+    
+    .client-table tr:hover {
+      background: #f8fafc;
+    }
+    
+    .client-id {
+      font-weight: 600;
+      color: #1e293b;
+    }
+    
+    .status-badge {
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .status-active {
+      background: #dcfce7;
+      color: #166534;
+    }
+    
+    .status-consent {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+    
+    .status-risk {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+    
+    /* Dashboard Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .metric-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border: 1px solid #e2e8f0;
+    }
+    
+    .metric-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .metric-icon {
+      font-size: 1.5rem;
+    }
+    
+    .metric-title {
+      font-weight: 600;
+      color: #1e293b;
+    }
+    
+    .metric-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #3b82f6;
+      margin-bottom: 0.5rem;
+    }
+    
+    .metric-subtitle {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    
+    /* Progress Charts */
+    .chart-container {
+      height: 200px;
+      background: #f8fafc;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem 0;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .chart-placeholder {
+      color: #64748b;
+      font-style: italic;
+    }
+    
+    /* Story Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.75rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e2e8f0;
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding-left: 1rem;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -0.5rem;
+      top: 0.5rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #3b82f6;
+    }
+    
+    .timeline-content {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .timeline-date {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Missions Builder */
+    .mission-template {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .mission-template:hover {
+      background: #f1f5f9;
+      border-color: #3b82f6;
+    }
+    
+    .mission-template.selected {
+      background: #dbeafe;
+      border-color: #3b82f6;
+    }
+    
+    .mission-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .mission-description {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+    
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #374151;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    
+    .form-textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      resize: vertical;
+      min-height: 100px;
+      font-size: 0.9rem;
+    }
+    
+    /* HIPAA Notice */
+    .hipaa-notice {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .hipaa-notice h4 {
+      color: #92400e;
+      margin-bottom: 0.5rem;
+    }
+    
+    .hipaa-notice p {
+      color: #92400e;
+      font-size: 0.9rem;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .clinical-header {
+        padding: 1rem;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .nav-tabs {
+        padding: 0 1rem;
+      }
+      
+      .nav-tabs-content {
+        gap: 1rem;
+      }
+      
+      .main-content {
+        padding: 1rem;
+      }
+      
+      .controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .search-filter {
+        flex-direction: column;
+      }
+      
+      .search-input {
+        min-width: auto;
+      }
+      
+      .client-table {
+        font-size: 0.8rem;
+      }
+      
+      .client-table th,
+      .client-table td {
+        padding: 0.5rem;
+      }
+      
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .timeline {
+        padding-left: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .nav-tabs-content {
+        flex-direction: column;
+        gap: 0;
+      }
+      
+      .nav-tab {
+        padding: 0.75rem 0;
+      }
+      
+      .metric-value {
+        font-size: 1.5rem;
+      }
+      
+      .client-table th:nth-child(n+3),
+      .client-table td:nth-child(n+3) {
+        display: none;
+      }
+    }
+    
+    /* Accessibility */
+    .btn:focus,
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+    
+    .nav-tab:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- HIPAA Notice -->
+  <div class="hipaa-notice">
+    <h4>🔒 HIPAA/GDPR Compliant System</h4>
+    <p>This platform maintains strict privacy controls. All client data is encrypted and access is logged. Only authorized personnel can view protected health information.</p>
+  </div>
+
+  <!-- Header -->
+  <header class="clinical-header">
+    <div class="header-content">
+      <div class="logo-section">
+        <h1>🏥 Brave Voice Clinical Dashboard</h1>
+        <p>Evidence-based assertiveness intervention platform</p>
+      </div>
+      <div class="user-info">
+        <span class="role-badge">Ph.D., LMHC</span>
+        <span>Dr. Robert Rice</span>
+        <button class="btn btn-secondary">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav-tabs">
+    <div class="nav-tabs-content">
+      <div class="nav-tab active" data-section="client-list">📋 Client List</div>
+      <div class="nav-tab" data-section="client-profile">👤 Client Profile</div>
+      <div class="nav-tab" data-section="story-explorer">📊 Story Explorer</div>
+      <div class="nav-tab" data-section="missions">🎯 Missions</div>
+      <div class="nav-tab" data-section="feedback">💬 Feedback</div>
+      <div class="nav-tab" data-section="reports">📈 Reports</div>
+      <div class="nav-tab" data-section="settings">⚙️ Settings</div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Client List Section -->
+    <section id="client-list" class="section active">
+      <div class="controls-bar">
+        <div class="search-filter">
+          <input type="text" class="search-input" placeholder="🔍 Search clients by ID or notes...">
+          <select class="filter-select">
+            <option>All Ages</option>
+            <option>8-10 years</option>
+            <option>11-12 years</option>
+          </select>
+          <select class="filter-select">
+            <option>All Sources</option>
+            <option>School Referral</option>
+            <option>Parent Request</option>
+            <option>Pediatrician</option>
+          </select>
+        </div>
+        <button class="btn btn-primary">+ Add Client</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Active Clients (12)</h3>
+        </div>
+        <div class="card-content">
+          <table class="client-table">
+            <thead>
+              <tr>
+                <th>Client ID</th>
+                <th>Age Range</th>
+                <th>Last Activity</th>
+                <th>Guardian Consent</th>
+                <th>Progress</th>
+                <th>Flags</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="client-id">BRAVE-2024-101</div></td>
+                <td>9-10 years</td>
+                <td>2 hours ago</td>
+                <td><span class="status-badge status-consent">✓ Active</span></td>
+                <td>78% Confidence Growth</td>
+                <td><span class="status-badge status-active">Progressing</span></td>
+                <td><button class="btn btn-secondary">Open Profile</button></td>
+              </tr>
+              <tr>
+                <td><div class="client-id">BRAVE-2024-102</div></td>
+                <td>11-12 years</td>
+                <td>1 day ago</td>
+                <td><span class="status-badge status-consent">✓ Active</span></td>
+                <td>45% Confidence Growth</td>
+                <td><span class="status-badge status-risk">⚠ Support Needed</span></td>
+                <td><button class="btn btn-secondary">Open Profile</button></td>
+              </tr>
+              <tr>
+                <td><div class="client-id">BRAVE-2024-103</div></td>
+                <td>8-9 years</td>
+                <td>3 days ago</td>
+                <td><span class="status-badge status-consent">✓ Active</span></td>
+                <td>92% Confidence Growth</td>
+                <td><span class="status-badge status-active">Excelling</span></td>
+                <td><button class="btn btn-secondary">Open Profile</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client Profile Section -->
+    <section id="client-profile" class="section">
+      <div class="card">
+        <div class="card-header">
+          <h3>Client Profile: BRAVE-2024-101</h3>
+          <p>Age Range: 9-10 years | Presenting Goals: Sibling conflict, classroom assertiveness | Last Active: 2 hours ago</p>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-icon">📈</span>
+            <span class="metric-title">Confidence Trend</span>
+          </div>
+          <div class="metric-value">7.8/10</div>
+          <div class="metric-subtitle">↗ +2.1 from baseline</div>
+          <div class="chart-container">
+            <div class="chart-placeholder">Interactive confidence trend chart</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-icon">🎯</span>
+            <span class="metric-title">Recent Activity</span>
+          </div>
+          <div class="metric-value">8</div>
+          <div class="metric-subtitle">Stories completed this week</div>
+          <div style="margin-top: 1rem;">
+            <div style="font-size: 0.9rem; color: #64748b;">Choice Pattern:</div>
+            <div style="margin-top: 0.5rem;">
+              <span style="color: #10b981;">Assertive: 65%</span> |
+              <span style="color: #f59e0b;">Passive: 25%</span> |
+              <span style="color: #ef4444;">Aggressive: 10%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-icon">🏆</span>
+            <span class="metric-title">Achievements</span>
+          </div>
+          <div class="metric-value">12</div>
+          <div class="metric-subtitle">Badges earned</div>
+          <div style="margin-top: 1rem; font-size: 0.9rem;">
+            <div>🎨 Creative Expression</div>
+            <div>🗣️ Brave Voice Builder</div>
+            <div>🛡️ Shield Designer</div>
+            <div>⭐ Confidence Champion</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-icon">💭</span>
+            <span class="metric-title">Cross-Cutting Check-ins</span>
+          </div>
+          <div class="metric-subtitle">Optional symptom monitoring</div>
+          <div style="margin-top: 1rem; font-size: 0.9rem;">
+            <div style="margin-bottom: 0.5rem;">😴 Sleep: Improving</div>
+            <div style="margin-bottom: 0.5rem;">😊 Mood: Stable</div>
+            <div style="margin-bottom: 0.5rem;">😰 Anxiety: Mild concern</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Therapist Notes & Observations</h3>
+        </div>
+        <div class="card-content">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-date">March 15, 2024</div>
+                <div><strong>Session Progress:</strong> Client showed significant improvement in identifying assertive responses. Successfully completed "Dragon Drawing" story with 100% assertive choices.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-date">March 12, 2024</div>
+                <div><strong>Behavioral Observation:</strong> Reports using "brave voice" with sibling at home. Parent confirms reduced conflict incidents.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-date">March 8, 2024</div>
+                <div><strong>Initial Assessment:</strong> Baseline confidence level 5.7/10. Primary concerns: sibling teasing, difficulty advocating in classroom settings.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story Explorer Section -->
+    <section id="story-explorer" class="section">
+      <div class="card">
+        <div class="card-header">
+          <h3>Story Path Analytics</h3>
+          <p>Session preparation tools and behavioral pattern analysis</p>
+        </div>
+        <div class="card-content">
+          <div class="dashboard-grid">
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-icon">📚</span>
+                <span class="metric-title">Story Completion Heatmap</span>
+              </div>
+              <div class="chart-container">
+                <div class="chart-placeholder">Weekly heatmap: % passive/aggressive/assertive choices</div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-icon">🎭</span>
+                <span class="metric-title">Recent Story Path</span>
+              </div>
+              <div style="font-size: 0.9rem;">
+                <div style="margin-bottom: 0.5rem;"><strong>Dragon Drawing Story</strong></div>
+                <div style="color: #64748b;">Scene 1 → Assertive Choice → Positive Outcome → Self-Reflection</div>
+                <div style="margin-top: 1rem; padding: 0.5rem; background: #f8fafc; border-radius: 4px;">
+                  <strong>Child's Reflection:</strong> "I felt proud when I used my brave voice instead of getting angry."
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Saved Artifacts</h3>
+        </div>
+        <div class="card-content">
+          <div class="dashboard-grid">
+            <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <h4 style="margin-bottom: 0.5rem;">🛡️ Shield Designs</h4>
+              <p style="font-size: 0.9rem; color: #64748b;">3 unique shields created - view for alliance building</p>
+              <button class="btn btn-secondary" style="margin-top: 0.5rem;">View Gallery</button>
+            </div>
+            <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <h4 style="margin-bottom: 0.5rem;">🗣️ Brave Voice Statements</h4>
+              <p style="font-size: 0.9rem; color: #64748b;">7 custom statements - helpful for family communication</p>
+              <button class="btn btn-secondary" style="margin-top: 0.5rem;">View Collection</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Missions Section -->
+    <section id="missions" class="section">
+      <div class="card">
+        <div class="card-header">
+          <h3>Assignment ("Missions") Builder</h3>
+          <p>Create structured between-session tasks that feel playful and actionable</p>
+        </div>
+        <div class="card-content">
+          <div class="form-group">
+            <label class="form-label">Select Mission Template</label>
+            <div class="mission-template">
+              <div class="mission-title">🎨 Replay Scene Challenge</div>
+              <div class="mission-description">Encourage child to replay "Ruby & the Dragon" story with assertive choices</div>
+            </div>
+            <div class="mission-template">
+              <div class="mission-title">🗣️ Brave Voice Builder</div>
+              <div class="mission-description">Pre-filled sentence stems with voice recording capability</div>
+            </div>
+            <div class="mission-template">
+              <div class="mission-title">🛡️ Shield Redesign</div>
+              <div class="mission-description">Create new shield for specific trigger: "When someone takes your turn..."</div>
+            </div>
+            <div class="mission-template">
+              <div class="mission-title">📝 In-Vivo Practice Log</div>
+              <div class="mission-description">Real-life practice with emoji feedback system</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Mission Details</label>
+            <input type="text" class="form-input" placeholder="Mission title (shown to child)">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Instructions for Child</label>
+            <textarea class="form-textarea" placeholder="Clear, age-appropriate instructions..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Due Date & Reminders</label>
+            <input type="date" class="form-input">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Clinical Notes Seed</label>
+            <textarea class="form-textarea" placeholder="Auto-populate clinical notes based on completion..."></textarea>
+          </div>
+
+          <button class="btn btn-primary">Create Mission</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback" class="section">
+      <div class="card">
+        <div class="card-header">
+          <h3>Coaching Feedback & Messaging</h3>
+          <p>Strength-based communication to maintain therapeutic alliance</p>
+        </div>
+        <div class="card-content">
+          <div class="form-group">
+            <label class="form-label">Select Strength-Based Message Template</label>
+            <select class="form-input">
+              <option>I noticed you tried your Brave Voice—nice work staying calm</option>
+              <option>Your creative shield design shows real thoughtfulness</option>
+              <option>Great job identifying that assertive choice in the story</option>
+              <option>Your confidence is really growing—keep practicing!</option>
+              <option>Custom message...</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Personalized Message</label>
+            <textarea class="form-textarea" placeholder="Craft encouraging, specific feedback based on recent activity..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Audio Message (Optional)</label>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem;">Record 30-second voice memo (requires guardian consent)</p>
+            <button class="btn btn-secondary">🎤 Record Message</button>
+          </div>
+
+          <button class="btn btn-primary">Send Feedback</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reports Section -->
+    <section id="reports" class="section">
+      <div class="card">
+        <div class="card-header">
+          <h3>Clinical Documentation & Reports</h3>
+          <p>Flexible documentation options for both digital EHR systems and paper-based practices</p>
+        </div>
+        <div class="card-content">
+          <div class="dashboard-grid">
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <h4 style="margin-bottom: 1rem;">🖨️ Printable Session Notes</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Paper-friendly session summaries with confidence data, choice patterns, and note-taking space</p>
+              <button class="btn btn-primary">Print Session Notes</button>
+            </div>
+            
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <h4 style="margin-bottom: 1rem;">📋 Progress Summary (Print)</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Printer-optimized charts and trends for paper files - no EHR required</p>
+              <button class="btn btn-primary">Print Progress Report</button>
+            </div>
+            
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <h4 style="margin-bottom: 1rem;">📄 Family Take-Home Sheet</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Simple, jargon-free summary for parents with specific examples from child's work</p>
+              <button class="btn btn-primary">Create Family Sheet</button>
+            </div>
+            
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <h4 style="margin-bottom: 1rem;">📝 Handwritten Note Template</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Pre-filled template with digital insights for traditional paper documentation</p>
+              <button class="btn btn-primary">Prepare Note Template</button>
+            </div>
+            
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <h4 style="margin-bottom: 1rem;">🎯 Treatment Plan Worksheet</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Printable treatment planning aid with baseline data and goal-setting framework</p>
+              <button class="btn btn-primary">Generate Worksheet</button>
+            </div>
+            
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <h4 style="margin-bottom: 1rem;">💾 Digital Export (Optional)</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">CSV/PDF for practices with EHR systems or digital filing</p>
+              <button class="btn btn-secondary">Export Digital Data</button>
+            </div>
+          </div>
+          
+          <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 1rem; margin-top: 2rem;">
+            <h4 style="color: #92400e; margin-bottom: 0.5rem;">📁 Paper Practice Support</h4>
+            <p style="color: #92400e; font-size: 0.9rem;">This system is designed to work independently - no EHR integration required. All reports can be printed and filed in traditional paper charts. Digital insights enhance but don't replace your existing documentation workflow.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings Section -->
+    <section id="settings" class="section">
+      <div class="card">
+        <div class="card-header">
+          <h3>Privacy, Consent & Accessibility Settings</h3>
+          <p>HIPAA/GDPR compliance, cultural responsiveness, and access accommodations</p>
+        </div>
+        <div class="card-content">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div>
+              <h4 style="margin-bottom: 1rem;">🔒 Consent & Data Sharing</h4>
+              <div style="background: #f8fafc; padding: 1rem; border-radius: 6px; border: 1px solid #e2e8f0; margin-bottom: 1rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                  <input type="checkbox" checked> Guardian consent active
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                  <input type="checkbox"> Audio message consent
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                  <input type="checkbox"> Family progress sharing
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                  <input type="checkbox" checked> Paper documentation only
+                </label>
+              </div>
+              <button class="btn btn-secondary">Manage Consent</button>
+            </div>
+            
+            <div>
+              <h4 style="margin-bottom: 1rem;">🌍 Cultural & Linguistic Access</h4>
+              <div class="form-group">
+                <label class="form-label">Interface Language</label>
+                <select class="form-input">
+                  <option>English</option>
+                  <option>Spanish</option>
+                  <option>Mandarin</option>
+                  <option>Arabic</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Reading Level Accommodation</label>
+                <select class="form-input">
+                  <option>Age-appropriate (default)</option>
+                  <option>Simple text + icons</option>
+                  <option>Audio narration</option>
+                  <option>Closed captions</option>
+                </select>
+              </div>
+            </div>
+            
+            <div>
+              <h4 style="margin-bottom: 1rem;">📁 Practice Type Support</h4>
+              <div style="background: #f0fdf4; border: 1px solid #22c55e; border-radius: 6px; padding: 1rem; font-size: 0.9rem;">
+                <p><strong>Flexible Documentation:</strong></p>
+                <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                  <li>✓ Works with paper-based practices</li>
+                  <li>✓ No EHR integration required</li>
+                  <li>✓ Printable reports and templates</li>
+                  <li>✓ Compatible with digital systems when ready</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div>
+              <h4 style="margin-bottom: 1rem;">⚖️ Bias Safeguards</h4>
+              <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 6px; padding: 1rem; font-size: 0.9rem;">
+                <p><strong>Active Safeguards:</strong></p>
+                <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                  <li>No stigmatizing scoring systems</li>
+                  <li>Strengths-based language required</li>
+                  <li>Cultural context considered in assessments</li>
+                  <li>Learning-focused vs. diagnostic labeling</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Tab Navigation
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active classes
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        
+        // Add active classes
+        tab.classList.add('active');
+        const sectionId = tab.getAttribute('data-section');
+        document.getElementById(sectionId).classList.add('active');
+      });
+    });
+
+    // Mission Template Selection
+    document.querySelectorAll('.mission-template').forEach(template => {
+      template.addEventListener('click', () => {
+        document.querySelectorAll('.mission-template').forEach(t => t.classList.remove('selected'));
+        template.classList.add('selected');
+      });
+    });
+
+    // Demonstration alerts for interactive elements
+    document.querySelectorAll('.btn').forEach(btn => {
+      if (!btn.textContent.includes('Logout')) {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert(`🏥 Clinical Feature: "${btn.textContent}" would integrate with EHR system and clinical workflow in the full implementation.`);
+        });
+      }
+    });
+
+    // Search functionality demo
+    document.querySelector('.search-input').addEventListener('input', (e) => {
+      console.log('Searching for:', e.target.value);
+    });
+  </script>
+</body>
+</html>
