@@ -644,17 +644,17 @@ class BraveVoiceGame {
         <h3>Enter Parent PIN</h3>
         <p>Please enter the 4-digit PIN to access the Parent Zone</p>
         <div class="pin-input">
-          <input type="number" maxlength="1" min="0" max="9" id="pin1">
-          <input type="number" maxlength="1" min="0" max="9" id="pin2">
-          <input type="number" maxlength="1" min="0" max="9" id="pin3">
-          <input type="number" maxlength="1" min="0" max="9" id="pin4">
+          <input type="number" maxlength="1" min="0" max="9" id="pin1" value="0">
+          <input type="number" maxlength="1" min="0" max="9" id="pin2" value="0">
+          <input type="number" maxlength="1" min="0" max="9" id="pin3" value="0">
+          <input type="number" maxlength="1" min="0" max="9" id="pin4" value="0">
         </div>
         <div class="modal-actions">
           <button onclick="window.parentZoneFunctions.closeParentZone()" class="ghost">Cancel</button>
           <button onclick="window.parentZoneFunctions.verifyPIN()" class="primary">Enter</button>
         </div>
         <p style="font-size: 12px; color: var(--muted); margin-top: 20px;">
-          Default PIN: 0000 (Change this in settings)
+          Demo PIN: 0000 (Pre-filled for demonstration)
         </p>
       </div>
     `;
