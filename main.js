@@ -74,9 +74,17 @@ class BraveVoiceGame {
       this.openParentZone();
     });
 
-    document.getElementById('btnTherapist').addEventListener('click', () => {
+    // Therapist dashboard buttons (both header and controls)
+    document.getElementById('btnTherapistHeader').addEventListener('click', () => {
       this.openTherapistDashboard();
     });
+    
+    const btnTherapist = document.getElementById('btnTherapist');
+    if (btnTherapist) {
+      btnTherapist.addEventListener('click', () => {
+        this.openTherapistDashboard();
+      });
+    }
 
     // Brave Voice Builder modal
     document.getElementById('btnCloseModal').addEventListener('click', () => {

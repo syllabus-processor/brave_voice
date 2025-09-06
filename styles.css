@@ -22,6 +22,7 @@ body {
 .app-header {
   text-align: center;
   padding: 24px 16px 8px;
+  position: relative;
 }
 .app-header h1 {
   margin: 0;
@@ -31,6 +32,22 @@ body {
 .tagline {
   color: var(--muted);
   margin-top: 6px;
+}
+.header-controls {
+  position: absolute;
+  top: 24px;
+  right: 16px;
+}
+.therapist-btn {
+  background: linear-gradient(45deg, #3b82f6, #1d4ed8) !important;
+  border: 2px solid #1e40af !important;
+  color: white !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
 }
 
 .app-main {
