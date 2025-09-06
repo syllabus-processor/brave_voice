@@ -12,23 +12,11 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Brave Voice Adventures"
+args = "Therapist Dashboard"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Therapist Dashboard"
-
-[[workflows.workflow]]
-name = "Brave Voice Adventures"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python -m http.server 5000 --bind 0.0.0.0"
-waitForPort = 5000
-
-[workflows.workflow.metadata]
-outputType = "webview"
+args = "Brave Voice Adventures"
 
 [[workflows.workflow]]
 name = "Therapist Dashboard"
@@ -42,10 +30,18 @@ waitForPort = 3000
 [workflows.workflow.metadata]
 outputType = "console"
 
+[[workflows.workflow]]
+name = "Brave Voice Adventures"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 -m http.server 5000 --bind 0.0.0.0"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
 [[ports]]
 localPort = 5000
 externalPort = 80
-
-[[ports]]
-localPort = 3000
-externalPort = 3000
