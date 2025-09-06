@@ -622,12 +622,8 @@ class BraveVoiceGame {
 
   // Therapist Dashboard functionality
   openTherapistDashboard() {
-    // Get the current domain
-    const currentDomain = window.location.hostname;
-    const therapistURL = `http://${currentDomain}:3000`;
-    
-    // Open in new tab/window
-    window.open(therapistURL, '_blank');
+    // Open the simple HTML dashboard on the same server
+    window.open('/therapist-dashboard.html', '_blank');
   }
 
   // Parent Zone functionality
