@@ -396,4 +396,4 @@ button.danger {
 @media (max-width: 700px) {
   .hud { grid-template-columns: 1fr; }
   .builder-grid { grid-template-columns: 1fr; }
-}
+}/* Force cache refresh */
