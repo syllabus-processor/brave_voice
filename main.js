@@ -624,7 +624,7 @@ class BraveVoiceGame {
   openTherapistDashboard() {
     console.log('Opening clinical dashboard...');
     // Open the comprehensive clinical dashboard
-    const url = '/clinical-dashboard.html?v=' + Date.now();
+    const url = 'clinical-dashboard.html?v=' + Date.now();
     console.log('Opening URL:', url);
     window.open(url, '_blank');
   }
