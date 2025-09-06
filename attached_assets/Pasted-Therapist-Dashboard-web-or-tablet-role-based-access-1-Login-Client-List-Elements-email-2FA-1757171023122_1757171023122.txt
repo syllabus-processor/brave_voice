@@ -1,0 +1,80 @@
+Therapist Dashboard (web or tablet, role-based access)
+1) Login & Client List
+
+Elements: email + 2FA; role (Therapist / Supervisor); HIPAA/GDPR consent banner; search; filters (age, school, referral source).
+
+Clients table: Nickname/ID (no PHI by default), last activity, guardian consent status, flags (risk, access issues), “Open Profile.”
+
+Why: Centralizes structured/ongoing assessment data and keeps the purpose of assessment transparent and collaborative.
+
+2) Client Profile — Overview
+
+Top strip
+
+Snapshot: age range, presenting goals, guardian contact (if enabled), access accommodations (language, reading level).
+
+Stage of change tag (optional): Pre-contemplation → Maintenance (for MI-consistent coaching).
+
+Panels
+
+Recent Activity: last stories played, choices (passive/aggressive/assertive), badges, “Brave Voice” lines saved.
+
+Confidence Trend: 0–10 line chart over time; session markers; therapist notes pinboard.
+
+Cross-Cutting Check-ins (optional): brief symptom snapshots the child/guardian completes (sleep, mood, anxiety) for pattern awareness—not diagnosis. (Maps to DSM-5-TR’s dimensional/cross-cutting spirit when used judiciously).
+
+Why: Blends quantitative (trend, frequencies) and qualitative (notes, artifacts) data to support treatment planning and progress verification.
+
+3) Story Path Explorer (Session Prep)
+
+Timeline view of the most recent story: scene → choice → outcome → reflection.
+
+Heatmap across weeks: % passive / % aggressive / % assertive.
+
+Artifacts: tap to open the child’s Shield designs and saved “Brave Voice” sentences (helpful for alliance building, communicating findings back to families in plain language).
+
+4) Assignments (“Missions”) Builder
+
+Create structured between-session tasks that feel playful to kids and actionable to parents:
+
+Templates
+
+Replay Scene (e.g., “Ruby & the Dragon,” encourage an assertive choice).
+
+Brave Voice Builder (pre-filled sentence stems; child records & plays back).
+
+Shield Redesign (prompt tied to a trigger: “When someone takes your turn…”).
+
+In-Vivo Log (one real-life try; pick emoji for how it went).
+
+Scheduling: due dates, reminders to guardian device, frequency.
+
+Targets & Measures: confidence baseline, simple 3-item reflection.
+
+Clinical note seed: auto-collects completion + quick reflection for your note.
+
+Why: Moves assessment from “one event” to iterative monitoring & outcome evaluation—a best practice in counseling assessment.
+
+5) Feedback & Messaging (Coach Lane)
+
+Choose a strength-based nudge (“I noticed you tried your Brave Voice—nice work staying calm.”).
+
+Audio sticker (therapist voice memo ≤30s) if consented—keeps alliance warm between sessions.
+
+6) Reports & Export
+
+Progress Summary: confidence trend, story distribution, completed missions, selected quotes/reflections.
+
+Session Prep Sheet: last week’s engagement, suggested prompts (“What made speaking up hard?”), next-step goals.
+
+PDF/CSV export with plain-language narratives for communicating results ethically and clearly to caregivers/teams.
+
+7) Settings, Privacy & Cultural/Linguistic Access
+
+Consent & Sharing: guardian consent dashboard, who can view what, revoke at any time.
+
+Data Minimization: pseudonyms by default; no unnecessary identifiers; local encryption + limited retention windows.
+
+Language & Reading Level: UI language toggle, icon-forward mode, closed captions/audio narration.
+
+Fairness & Bias safeguards: avoid scoring that stigmatizes; present findings as supports for learning, not labels; include context (home/school culture).

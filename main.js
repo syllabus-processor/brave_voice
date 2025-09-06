@@ -622,9 +622,9 @@ class BraveVoiceGame {
 
   // Therapist Dashboard functionality
   openTherapistDashboard() {
-    console.log('Opening therapist dashboard...');
-    // Open the simple HTML dashboard on the same server with cache busting
-    const url = '/therapist-dashboard.html?v=' + Date.now();
+    console.log('Opening clinical dashboard...');
+    // Open the comprehensive clinical dashboard
+    const url = '/clinical-dashboard.html?v=' + Date.now();
     console.log('Opening URL:', url);
     window.open(url, '_blank');
   }
