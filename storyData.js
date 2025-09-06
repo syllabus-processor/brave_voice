@@ -33,6 +33,11 @@ const storyData = {
         text: "🎠 The Playground Story", 
         type: "story",
         nextScene: "playground1"
+      },
+      {
+        text: "🏥 Therapist Dashboard",
+        type: "therapist",
+        nextScene: "therapist_portal"
       }
     ]
   },

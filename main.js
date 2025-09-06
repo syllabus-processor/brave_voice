@@ -173,6 +173,11 @@ class BraveVoiceGame {
       return;
     }
     
+    if (choice.type === 'therapist') {
+      this.openTherapistDashboard();
+      return;
+    }
+    
     const nextScene = window.storyData[choice.nextScene];
     
     if (nextScene && nextScene.isEnding) {
