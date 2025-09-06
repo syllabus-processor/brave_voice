@@ -877,34 +877,51 @@
     <section id="reports" class="section">
       <div class="card">
         <div class="card-header">
-          <h3>Progress Reports & Export</h3>
-          <p>Generate comprehensive summaries for clinical documentation and family communication</p>
+          <h3>Clinical Documentation & Reports</h3>
+          <p>Flexible documentation options for both digital EHR systems and paper-based practices</p>
         </div>
         <div class="card-content">
           <div class="dashboard-grid">
             <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-              <h4 style="margin-bottom: 1rem;">📊 Progress Summary</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Confidence trends, story completion rates, achievement tracking</p>
-              <button class="btn btn-primary">Generate Report</button>
+              <h4 style="margin-bottom: 1rem;">🖨️ Printable Session Notes</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Paper-friendly session summaries with confidence data, choice patterns, and note-taking space</p>
+              <button class="btn btn-primary">Print Session Notes</button>
             </div>
             
             <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-              <h4 style="margin-bottom: 1rem;">📋 Session Prep Sheet</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Last week's engagement, suggested therapeutic prompts, goals</p>
-              <button class="btn btn-primary">Prepare Session</button>
+              <h4 style="margin-bottom: 1rem;">📋 Progress Summary (Print)</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Printer-optimized charts and trends for paper files - no EHR required</p>
+              <button class="btn btn-primary">Print Progress Report</button>
             </div>
             
             <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-              <h4 style="margin-bottom: 1rem;">📄 Family Communication</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Plain-language progress narrative for caregivers</p>
-              <button class="btn btn-primary">Create Family Report</button>
+              <h4 style="margin-bottom: 1rem;">📄 Family Take-Home Sheet</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Simple, jargon-free summary for parents with specific examples from child's work</p>
+              <button class="btn btn-primary">Create Family Sheet</button>
             </div>
             
             <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-              <h4 style="margin-bottom: 1rem;">💾 Data Export</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">CSV/PDF export for clinical records and outcome evaluation</p>
-              <button class="btn btn-secondary">Export Data</button>
+              <h4 style="margin-bottom: 1rem;">📝 Handwritten Note Template</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Pre-filled template with digital insights for traditional paper documentation</p>
+              <button class="btn btn-primary">Prepare Note Template</button>
             </div>
+            
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <h4 style="margin-bottom: 1rem;">🎯 Treatment Plan Worksheet</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Printable treatment planning aid with baseline data and goal-setting framework</p>
+              <button class="btn btn-primary">Generate Worksheet</button>
+            </div>
+            
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <h4 style="margin-bottom: 1rem;">💾 Digital Export (Optional)</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">CSV/PDF for practices with EHR systems or digital filing</p>
+              <button class="btn btn-secondary">Export Digital Data</button>
+            </div>
+          </div>
+          
+          <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 1rem; margin-top: 2rem;">
+            <h4 style="color: #92400e; margin-bottom: 0.5rem;">📁 Paper Practice Support</h4>
+            <p style="color: #92400e; font-size: 0.9rem;">This system is designed to work independently - no EHR integration required. All reports can be printed and filed in traditional paper charts. Digital insights enhance but don't replace your existing documentation workflow.</p>
           </div>
         </div>
       </div>
@@ -931,6 +948,9 @@
                 <label style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
                   <input type="checkbox"> Family progress sharing
                 </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                  <input type="checkbox" checked> Paper documentation only
+                </label>
               </div>
               <button class="btn btn-secondary">Manage Consent</button>
             </div>
@@ -954,6 +974,19 @@
                   <option>Audio narration</option>
                   <option>Closed captions</option>
                 </select>
+              </div>
+            </div>
+            
+            <div>
+              <h4 style="margin-bottom: 1rem;">📁 Practice Type Support</h4>
+              <div style="background: #f0fdf4; border: 1px solid #22c55e; border-radius: 6px; padding: 1rem; font-size: 0.9rem;">
+                <p><strong>Flexible Documentation:</strong></p>
+                <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                  <li>✓ Works with paper-based practices</li>
+                  <li>✓ No EHR integration required</li>
+                  <li>✓ Printable reports and templates</li>
+                  <li>✓ Compatible with digital systems when ready</li>
+                </ul>
               </div>
             </div>
             
