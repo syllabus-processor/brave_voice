@@ -74,6 +74,10 @@ class BraveVoiceGame {
       this.openParentZone();
     });
 
+    document.getElementById('btnTherapist').addEventListener('click', () => {
+      this.openTherapistDashboard();
+    });
+
     // Brave Voice Builder modal
     document.getElementById('btnCloseModal').addEventListener('click', () => {
       this.closeBraveVoiceBuilder();
@@ -601,6 +605,16 @@ class BraveVoiceGame {
 
   closeShieldDesigner() {
     document.getElementById('shieldModal').classList.add('hidden');
+  }
+
+  // Therapist Dashboard functionality
+  openTherapistDashboard() {
+    // Get the current domain
+    const currentDomain = window.location.hostname;
+    const therapistURL = `http://${currentDomain}:3000`;
+    
+    // Open in new tab/window
+    window.open(therapistURL, '_blank');
   }
 
   // Parent Zone functionality
